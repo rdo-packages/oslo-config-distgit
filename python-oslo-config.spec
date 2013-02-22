@@ -1,5 +1,5 @@
 %global sname oslo-config
-%global btag b3
+%global btag b4
 
 Name:       python-oslo-config
 Version:    2013.1
@@ -10,9 +10,6 @@ Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/%{sname}/%{sname}-%{version}%{btag}.tar.gz
-
-# See https://review.openstack.org/22134
-Source1:    LICENSE
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -45,8 +42,6 @@ rm -rf oslo_config.egg-info
 # let RPM handle deps
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
-cp %{SOURCE1} .
-
 %build
 %{__python} setup.py build
 
@@ -75,5 +70,8 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
-* Sun Feb 17 2013 Mark McLoughlin <markmc@redhat.com> 2013.1-0.1.b3
+* Fri Feb 22 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b4
+- Update to 2013.1b4
+
+* Sun Feb 17 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b3
 - Initial package (#912023).
