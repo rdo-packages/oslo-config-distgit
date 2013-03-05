@@ -1,5 +1,5 @@
 %global sname oslo-config
-%global btag b4
+%global btag b5
 
 Name:       python-oslo-config
 Version:    2013.1
@@ -13,6 +13,7 @@ Source0:    http://tarballs.openstack.org/%{sname}/%{sname}-%{version}%{btag}.ta
 
 BuildArch:  noarch
 Requires:   python-setuptools
+Requires:   python-argparse
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -70,6 +71,10 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Tue Mar  5 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b5
+- Update to 2013.1b5
+- Require python-argparse (#917937)
+
 * Fri Feb 22 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b4
 - Update to 2013.1b4
 
