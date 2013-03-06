@@ -1,15 +1,16 @@
-%global sname oslo-config
-%global btag b5
+%global sname oslo.config
+%global btag b1
 
 Name:       python-oslo-config
-Version:    2013.1
+Epoch:      1
+Version:    1.1.0
 Release:    0.1.%{btag}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    http://tarballs.openstack.org/%{sname}/%{sname}-%{version}%{btag}.tar.gz
+Source0:    http://tarballs.openstack.org/oslo-config/%{sname}-%{version}%{btag}.tar.gz
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -39,7 +40,7 @@ Documentation for the oslo-config library.
 %prep
 %setup -q -n %{sname}-%{version}%{btag}
 # Remove bundled egg-info
-rm -rf oslo_config.egg-info
+rm -rf %{sname}.egg-info
 # let RPM handle deps
 sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
@@ -71,6 +72,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Wed Mar  6 2013 Mark McLoughlin <markmc@redhat.com> - 1.1.0-0.1.b1
+- Update to 1.1.0b1, bump epoch
+
 * Tue Mar  5 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b5
 - Update to 2013.1b5
 - Require python-argparse (#917937)
