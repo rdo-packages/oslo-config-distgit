@@ -15,9 +15,12 @@ Source0:    http://tarballs.openstack.org/oslo-config/%{sname}-%{version}%{miles
 BuildArch:  noarch
 Requires:   python-setuptools
 Requires:   python-argparse
+Requires:   python-six
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
+BuildRequires: python-pbr
+BuildRequires: python-d2to1
 
 %description
 The Oslo project intends to produce a python library containing
