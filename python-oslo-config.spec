@@ -1,16 +1,16 @@
 %global sname oslo.config
-%global milestone a2
+%global milestone a3
 
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.2.0
-Release:    0.1.%{milestone}%{?dist}
+Release:    0.2.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    http://tarballs.openstack.org/oslo-config/%{sname}-%{version}%{milestone}.tar.gz
+Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -77,6 +77,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Sun Jul 21 2013 pbrady@redhat.com - 1:1.2.0-0.2.a3
+- Update to 1.2.0a3 milestone
+
 * Mon Jun 24 2013 apevec@redhat.com - 1:1.2.0-0.1.a2
 - Update to 1.2.0a2 milestone
 
