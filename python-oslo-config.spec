@@ -72,6 +72,7 @@ rm -fr doc/build/html/.buildinfo
 %doc README.rst
 %{python_sitelib}/oslo
 %{python_sitelib}/*.egg-info
+%{python_sitelib}/*-nspkg.pth
 
 %files doc
 %doc LICENSE doc/build/html
