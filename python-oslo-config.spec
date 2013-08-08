@@ -4,13 +4,14 @@
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.2.0
-Release:    0.3.%{milestone}%{?dist}
+Release:    0.4.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
+Patch0:     0001-add-usr-share-project-project-dist.conf-to-the-defau.patch
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -42,6 +43,8 @@ Documentation for the oslo-config library.
 
 %prep
 %setup -q -n %{sname}-%{version}%{milestone}
+
+%patch0 -p1
 
 sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 
@@ -78,6 +81,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Thu Aug 8 2013 pbrady@redhat.com - 1:1.2.0-0.4.a3
+- Look for /usr/share/$project/$project-dist.conf by default
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.0-0.3.a3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
