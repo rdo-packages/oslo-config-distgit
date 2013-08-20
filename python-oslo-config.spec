@@ -4,14 +4,17 @@
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.2.0
-Release:    0.4.%{milestone}%{?dist}
+Release:    0.5.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
-Patch0:     0001-add-usr-share-project-project-dist.conf-to-the-defau.patch
+#
+# patches_base=1.2.0a3
+#
+Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -44,7 +47,7 @@ Documentation for the oslo-config library.
 %prep
 %setup -q -n %{sname}-%{version}%{milestone}
 
-%patch0 -p1
+%patch0001 -p1
 
 sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 
@@ -81,6 +84,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Tue Aug 20 2013 apevec@redhat.com 1.2.0-0.5.a3
+- Look also for $prog-dist.conf for glance-manage
+
 * Thu Aug 8 2013 pbrady@redhat.com - 1:1.2.0-0.4.a3
 - Look for /usr/share/$project/$project-dist.conf by default
 
