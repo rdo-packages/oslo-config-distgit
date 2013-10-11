@@ -1,20 +1,20 @@
 %global sname oslo.config
-%global milestone a3
 
 Name:       python-oslo-config
 Epoch:      1
-Version:    1.2.0
-Release:    0.5.%{milestone}%{?dist}
+Version:    1.2.1
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
+Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
 #
-# patches_base=1.2.0a3
+# patches_base=1.2.1
 #
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
+Patch0002: 0002-Revert-Use-oslo.sphinx-and-remove-local-copy-of-doc-.patch
 
 BuildArch:  noarch
 Requires:   python-setuptools
@@ -45,11 +45,10 @@ BuildRequires: python-sphinx
 Documentation for the oslo-config library.
 
 %prep
-%setup -q -n %{sname}-%{version}%{milestone}
+%setup -q -n %{sname}-%{version}
 
 %patch0001 -p1
-
-sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
+%patch0002 -p1
 
 # Remove bundled egg-info
 rm -rf %{sname}.egg-info
@@ -84,6 +83,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Fri Oct 11 2013 Alan Pevec <apevec@redhat.com> - 1.2.1-1
+- Update to 1.2.1
+
 * Tue Aug 20 2013 apevec@redhat.com 1.2.0-0.5.a3
 - Look also for $prog-dist.conf for glance-manage
 

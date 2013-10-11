@@ -1,4 +1,4 @@
-From d8754a26b5dc4ed622a6f71da21f9f8d9bff3246 Mon Sep 17 00:00:00 2001
+From e67c68fe9bcc3db355d46a7ca3347fe4826becc7 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?P=C3=A1draig=20Brady?= <pbrady@redhat.com>
 Date: Mon, 11 Feb 2013 17:32:55 +0000
 Subject: [PATCH] add /usr/share/$project/*-dist.conf to the default config set
@@ -25,10 +25,10 @@ take precedence over any of the --config-file settings above.
  1 file changed, 4 insertions(+)
 
 diff --git a/oslo/config/cfg.py b/oslo/config/cfg.py
-index bf8613a..7cd1257 100644
+index 4354886..4b3e25d 100644
 --- a/oslo/config/cfg.py
 +++ b/oslo/config/cfg.py
-@@ -463,6 +463,10 @@ def find_config_files(project=None, prog=None, extension='.conf'):
+@@ -471,6 +471,10 @@ def find_config_files(project=None, prog=None, extension='.conf'):
  
      config_files = []
      if project:
