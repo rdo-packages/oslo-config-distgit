@@ -1,25 +1,30 @@
 %global sname oslo.config
+%global milestone a3
+
 
 Name:       python-oslo-config
 Epoch:      1
-Version:    1.2.1
-Release:    2%{?dist}
+Version:    1.4.0.0
+Release:    0.1.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
+#Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
+Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
+
 #
-# patches_base=1.2.1
+# patches_base=1.4.0.0a3
 #
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
-Patch0002: 0002-Revert-Use-oslo.sphinx-and-remove-local-copy-of-doc-.patch
 
 BuildArch:  noarch
 Requires:   python-setuptools
 Requires:   python-argparse
-Requires:   python-six
+Requires:   python-six >= 1.7.0
+Requires:   python-netaddr
+Requires:   python-stevedore
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -40,20 +45,25 @@ Summary:    Documentation for OpenStack common configuration library
 Group:      Documentation
 
 BuildRequires: python-sphinx
+BuildRequires: python-oslo-sphinx
 
 %description doc
 Documentation for the oslo-config library.
 
 %prep
-%setup -q -n %{sname}-%{version}
+%setup -q -n %{sname}-%{version}%{milestone}
 
 %patch0001 -p1
-%patch0002 -p1
+
+sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 
 # Remove bundled egg-info
 rm -rf %{sname}.egg-info
 # let RPM handle deps
-sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
+rm -f requirements.txt
+# make doc build compatible with python-oslo-sphinx RPM
+sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
+
 
 %build
 %{__python} setup.py build
@@ -74,7 +84,8 @@ rm -fr doc/build/html/.buildinfo
 %check
 
 %files
-%doc README.rst
+%doc README.rst LICENSE
+%{_bindir}/oslo-config-generator
 %{python_sitelib}/oslo
 %{python_sitelib}/*.egg-info
 %{python_sitelib}/*-nspkg.pth
@@ -83,6 +94,9 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %changelog
+* Thu Jul 31 2014 - 1.4.0.0-0.1.a3
+- Update to 1.4.0.0a3 milestone
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
