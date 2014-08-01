@@ -51,7 +51,7 @@ BuildRequires: python-oslo-sphinx
 Documentation for the oslo-config library.
 
 %prep
-%setup -q -n %{sname}-%{version}%{milestone}
+%setup -q -n oslo.config-%{upstream_version}
 
 %patch0001 -p1
 
@@ -61,9 +61,6 @@ sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 rm -rf %{sname}.egg-info
 # let RPM handle deps
 rm -f requirements.txt
-# make doc build compatible with python-oslo-sphinx RPM
-sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
-
 
 %build
 %{__python} setup.py build
