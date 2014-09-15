@@ -8,7 +8,7 @@
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.4.0.0
-Release:    0.1.%{milestone}%{?dist}
+Release:    0.2.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -146,6 +146,9 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Mon Sep 15 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.2.a3
+- Add python3 subpackage
+
 * Thu Jul 31 2014 - 1.4.0.0-0.1.a3
 - Update to 1.4.0.0a3 milestone
 
