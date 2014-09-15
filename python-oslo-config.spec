@@ -1,6 +1,9 @@
 %global sname oslo.config
 %global milestone a3
 
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 
 Name:       python-oslo-config
 Epoch:      1
@@ -50,6 +53,25 @@ BuildRequires: python-oslo-sphinx
 %description doc
 Documentation for the oslo-config library.
 
+%if 0%{?with_python3}
+%package -n python3-%{sname}
+Summary:    OpenStack common configuration library
+
+BuildRequires: python3-devel
+BuildRequires: python3-setuptools
+BuildRequires: python-pbr
+BuildRequires: python-d2to1
+
+%description -n python3-%{sname}
+The Oslo project intends to produce a python library containing
+infrastructure code shared by OpenStack projects. The APIs provided
+by the project should be high quality, stable, consistent and generally
+useful.
+
+The oslo-config library is a command line and configuration file
+parsing library from the Oslo project.
+%endif
+
 %prep
 %setup -q -n %{sname}-%{version}%{milestone}
 
@@ -64,15 +86,36 @@ rm -f requirements.txt
 # make doc build compatible with python-oslo-sphinx RPM
 sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
 
+%if 0%{?with_python3}
+rm -rf %{py3dir}
+cp -a . %{py3dir}
+%endif
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
+
+%if 0%{?with_python3}
+pushd %{py3dir}
+%{__python3} setup.py build
+popd
+%endif
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%if 0%{?with_python3}
+# we build the python3 version first not to crush the python2
+# version of oslo-config-generator
+pushd %{py3dir}
+%{__python3} setup.py install -O1 --skip-build --root %{buildroot}
+mv %{buildroot}%{_bindir}/oslo-config-generator \
+   %{buildroot}%{_bindir}/python3-oslo-config-generator
+# FIXME: documentation not built due to non-python3
+popd
+%endif
+
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 # Delete tests
-rm -fr %{buildroot}%{python_sitelib}/tests
+rm -fr %{buildroot}%{python2_sitelib}/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
@@ -86,12 +129,21 @@ rm -fr doc/build/html/.buildinfo
 %files
 %doc README.rst LICENSE
 %{_bindir}/oslo-config-generator
-%{python_sitelib}/oslo
-%{python_sitelib}/*.egg-info
-%{python_sitelib}/*-nspkg.pth
+%{python2_sitelib}/oslo
+%{python2_sitelib}/*.egg-info
+%{python2_sitelib}/*-nspkg.pth
 
 %files doc
 %doc LICENSE doc/build/html
+
+%if 0%{?with_python3}
+%files -n python3-%{sname}
+%doc README.rst LICENSE
+%{_bindir}/python3-oslo-config-generator
+%{python3_sitelib}/oslo
+%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*-nspkg.pth
+%endif
 
 %changelog
 * Thu Jul 31 2014 - 1.4.0.0-0.1.a3
