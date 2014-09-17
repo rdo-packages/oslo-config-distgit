@@ -8,7 +8,7 @@
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.4.0.0
-Release:    0.2.%{milestone}%{?dist}
+Release:    0.3.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -54,7 +54,7 @@ BuildRequires: python-oslo-sphinx
 Documentation for the oslo-config library.
 
 %if 0%{?with_python3}
-%package -n python3-%{sname}
+%package -n python3-oslo-config
 Summary:    OpenStack common configuration library
 
 BuildRequires: python3-devel
@@ -62,7 +62,7 @@ BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
 BuildRequires: python3-d2to1
 
-%description -n python3-%{sname}
+%description -n python3-oslo-config
 The Oslo project intends to produce a python library containing
 infrastructure code shared by OpenStack projects. The APIs provided
 by the project should be high quality, stable, consistent and generally
@@ -137,7 +137,7 @@ rm -fr doc/build/html/.buildinfo
 %doc LICENSE doc/build/html
 
 %if 0%{?with_python3}
-%files -n python3-%{sname}
+%files -n python3-oslo-config
 %doc README.rst LICENSE
 %{_bindir}/python3-oslo-config-generator
 %{python3_sitelib}/oslo
@@ -146,6 +146,9 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Wed Sep 17 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.3.a3
+- Rename python3 subpackage
+
 * Mon Sep 15 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.2.a3
 - Add python3 subpackage
 
