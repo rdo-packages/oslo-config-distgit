@@ -1,5 +1,5 @@
 %global sname oslo.config
-%global milestone a3
+%global milestone a5
 
 %if 0%{?fedora}
 %global with_python3 1
@@ -8,7 +8,7 @@
 Name:       python-oslo-config
 Epoch:      1
 Version:    1.4.0.0
-Release:    0.3.%{milestone}%{?dist}
+Release:    0.4.%{milestone}%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -18,7 +18,7 @@ URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
 
 #
-# patches_base=1.4.0.0a3
+# patches_base=1.4.0.0a5
 #
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
@@ -146,14 +146,14 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Wed Sep 17 2014 Alan Pevec <apevec@redhat.com> - 1:1.4.0.0-0.4.a5
+- Update to 1.4.0.0a5 milestone
+
 * Wed Sep 17 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.3.a3
 - Rename python3 subpackage
 
 * Mon Sep 15 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.2.a3
 - Add python3 subpackage
-
-* Thu Jul 31 2014 - 1.4.0.0-0.1.a3
-- Update to 1.4.0.0a3 milestone
 
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
