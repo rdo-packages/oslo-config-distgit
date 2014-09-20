@@ -6,19 +6,19 @@
 %endif
 
 Name:       python-oslo-config
-Epoch:      1
-Version:    1.4.0.0
-Release:    0.4.%{milestone}%{?dist}
+Epoch:      2
+Version:    1.4.0
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-#Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
-Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
+Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
+#Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
 
 #
-# patches_base=1.4.0.0a5
+# patches_base=1.4.0
 #
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
@@ -73,11 +73,9 @@ parsing library from the Oslo project.
 %endif
 
 %prep
-%setup -q -n %{sname}-%{version}%{milestone}
+%setup -q -n %{sname}-%{version}
 
 %patch0001 -p1
-
-sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 
 # Remove bundled egg-info
 rm -rf %{sname}.egg-info
@@ -146,6 +144,9 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Sat Sep 20 2014 Alan Pevec <apevec@redhat.com> - 2:1.4.0
+- Final 1.4.0 release, Epoch bumped to make 1.4.0 win over 1.4.0.0
+
 * Wed Sep 17 2014 Alan Pevec <apevec@redhat.com> - 1:1.4.0.0-0.4.a5
 - Update to 1.4.0.0a5 milestone
 
