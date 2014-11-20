@@ -1,21 +1,24 @@
 %global sname oslo.config
-%global milestone a3
+%global milestone a5
 
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 
 Name:       python-oslo-config
-Epoch:      1
-Version:    1.4.0.0
-Release:    0.1.%{milestone}%{?dist}
+Epoch:      2
+Version:    XXX
+Release:    XXX{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-#Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
-Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
+Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
+#Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
 
 #
-# patches_base=1.4.0.0a3
+# patches_base=1.4.0
 #
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
@@ -50,26 +53,65 @@ BuildRequires: python-oslo-sphinx
 %description doc
 Documentation for the oslo-config library.
 
+%if 0%{?with_python3}
+%package -n python3-oslo-config
+Summary:    OpenStack common configuration library
+
+BuildRequires: python3-devel
+BuildRequires: python3-setuptools
+BuildRequires: python3-pbr
+BuildRequires: python3-d2to1
+
+%description -n python3-oslo-config
+The Oslo project intends to produce a python library containing
+infrastructure code shared by OpenStack projects. The APIs provided
+by the project should be high quality, stable, consistent and generally
+useful.
+
+The oslo-config library is a command line and configuration file
+parsing library from the Oslo project.
+%endif
+
 %prep
-%setup -q -n oslo.config-%{upstream_version}
+%setup -q -n %{sname}-%{upstream_version}
 
 %patch0001 -p1
-
-sed -i 's/%{version}%{milestone}/%{version}/' PKG-INFO
 
 # Remove bundled egg-info
 rm -rf %{sname}.egg-info
 # let RPM handle deps
 rm -f requirements.txt
 
+%if 0%{?with_python3}
+rm -rf %{py3dir}
+cp -a . %{py3dir}
+%endif
+
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
+
+%if 0%{?with_python3}
+pushd %{py3dir}
+%{__python3} setup.py build
+popd
+%endif
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%if 0%{?with_python3}
+# we build the python3 version first not to crush the python2
+# version of oslo-config-generator
+pushd %{py3dir}
+%{__python3} setup.py install -O1 --skip-build --root %{buildroot}
+mv %{buildroot}%{_bindir}/oslo-config-generator \
+   %{buildroot}%{_bindir}/python3-oslo-config-generator
+# FIXME: documentation not built due to non-python3
+popd
+%endif
+
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 # Delete tests
-rm -fr %{buildroot}%{python_sitelib}/tests
+rm -fr %{buildroot}%{python2_sitelib}/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
@@ -83,16 +125,34 @@ rm -fr doc/build/html/.buildinfo
 %files
 %doc README.rst LICENSE
 %{_bindir}/oslo-config-generator
-%{python_sitelib}/oslo
-%{python_sitelib}/*.egg-info
-%{python_sitelib}/*-nspkg.pth
+%{python2_sitelib}/oslo
+%{python2_sitelib}/*.egg-info
+%{python2_sitelib}/*-nspkg.pth
 
 %files doc
 %doc LICENSE doc/build/html
 
+%if 0%{?with_python3}
+%files -n python3-oslo-config
+%doc README.rst LICENSE
+%{_bindir}/python3-oslo-config-generator
+%{python3_sitelib}/oslo
+%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*-nspkg.pth
+%endif
+
 %changelog
-* Thu Jul 31 2014 - 1.4.0.0-0.1.a3
-- Update to 1.4.0.0a3 milestone
+* Sat Sep 20 2014 Alan Pevec <apevec@redhat.com> - 2:1.4.0
+- Final 1.4.0 release, Epoch bumped to make 1.4.0 win over 1.4.0.0
+
+* Wed Sep 17 2014 Alan Pevec <apevec@redhat.com> - 1:1.4.0.0-0.4.a5
+- Update to 1.4.0.0a5 milestone
+
+* Wed Sep 17 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.3.a3
+- Rename python3 subpackage
+
+* Mon Sep 15 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.2.a3
+- Add python3 subpackage
 
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
