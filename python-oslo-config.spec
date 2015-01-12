@@ -137,6 +137,7 @@ rm -fr doc/build/html/.buildinfo
 %doc README.rst LICENSE
 %{_bindir}/python3-oslo-config-generator
 %{python3_sitelib}/oslo
+%{python3_sitelib}/oslo_config
 %{python3_sitelib}/*.egg-info
 %{python3_sitelib}/*-nspkg.pth
 %endif
