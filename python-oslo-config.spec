@@ -126,6 +126,7 @@ rm -fr doc/build/html/.buildinfo
 %doc README.rst LICENSE
 %{_bindir}/oslo-config-generator
 %{python2_sitelib}/oslo
+%{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 %{python2_sitelib}/*-nspkg.pth
 
