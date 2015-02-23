@@ -1,4 +1,4 @@
-From 50ae3e476a3c670e6796a5caa9dd2fd69c7ef931 Mon Sep 17 00:00:00 2001
+From 3f4f1731d84a950718c68d0a6069e482f96c93e1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?P=C3=A1draig=20Brady?= <pbrady@redhat.com>
 Date: Mon, 11 Feb 2013 17:32:55 +0000
 Subject: [PATCH] add /usr/share/$project/*-dist.conf to the default config set
@@ -21,14 +21,14 @@ and settings from there are overridden by any from
 For completeness, note settings in configs from --config-dir
 take precedence over any of the --config-file settings above.
 ---
- oslo/config/cfg.py | 4 ++++
+ oslo_config/cfg.py | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/oslo/config/cfg.py b/oslo/config/cfg.py
-index 555b910..c5199a1 100644
---- a/oslo/config/cfg.py
-+++ b/oslo/config/cfg.py
-@@ -538,6 +538,10 @@ def find_config_files(project=None, prog=None, extension='.conf'):
+diff --git a/oslo_config/cfg.py b/oslo_config/cfg.py
+index b51b4ec..735d9fb 100644
+--- a/oslo_config/cfg.py
++++ b/oslo_config/cfg.py
+@@ -550,6 +550,10 @@ def find_config_files(project=None, prog=None, extension='.conf'):
  
      config_files = []
      if project:

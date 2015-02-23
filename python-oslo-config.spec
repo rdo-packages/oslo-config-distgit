@@ -7,7 +7,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    1.4.0
+Version:    1.7.0
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -15,19 +15,16 @@ Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    https://pypi.python.org/packages/source/o/%{sname}/%{sname}-%{version}.tar.gz
-#Source0:    http://tarballs.openstack.org/oslo.config/%{sname}-%{version}%{milestone}.tar.gz
 
-#
-# patches_base=1.4.0
-#
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
 BuildArch:  noarch
 Requires:   python-setuptools
 Requires:   python-argparse
-Requires:   python-six >= 1.7.0
+Requires:   python-six >= 1.9.0
 Requires:   python-netaddr
 Requires:   python-stevedore
+Requires:   python-pbr
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -48,7 +45,7 @@ Summary:    Documentation for OpenStack common configuration library
 Group:      Documentation
 
 BuildRequires: python-sphinx
-BuildRequires: python-oslo-sphinx
+BuildRequires: python-oslo-sphinx >= 2.3.0
 
 %description doc
 Documentation for the oslo-config library.
@@ -77,12 +74,8 @@ parsing library from the Oslo project.
 
 %patch0001 -p1
 
-# Remove bundled egg-info
-rm -rf %{sname}.egg-info
 # let RPM handle deps
 rm -f requirements.txt
-# make doc build compatible with python-oslo-sphinx RPM
-sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
 
 %if 0%{?with_python3}
 rm -rf %{py3dir}
@@ -127,6 +120,7 @@ rm -fr doc/build/html/.buildinfo
 %files
 %doc README.rst LICENSE
 %{_bindir}/oslo-config-generator
+%{python2_sitelib}/oslo_config
 %{python2_sitelib}/oslo
 %{python2_sitelib}/*.egg-info
 %{python2_sitelib}/*-nspkg.pth
@@ -138,12 +132,16 @@ rm -fr doc/build/html/.buildinfo
 %files -n python3-oslo-config
 %doc README.rst LICENSE
 %{_bindir}/python3-oslo-config-generator
+%{python3_sitelib}/oslo_config
 %{python3_sitelib}/oslo
 %{python3_sitelib}/*.egg-info
 %{python3_sitelib}/*-nspkg.pth
 %endif
 
 %changelog
+* Mon Feb 23 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.7.0-1
+- Update to upstream 1.7.0
+
 * Sat Sep 20 2014 Alan Pevec <apevec@redhat.com> - 2:1.4.0
 - Final 1.4.0 release, Epoch bumped to make 1.4.0 win over 1.4.0.0
 
