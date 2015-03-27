@@ -7,7 +7,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    1.7.0
+Version:    1.9.3
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -139,6 +139,9 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Fri Mar 27 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.9.3-1
+- Update to upstream 1.9.3
+
 * Mon Feb 23 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.7.0-1
 - Update to upstream 1.7.0
 
