@@ -29,7 +29,6 @@ Requires:   python-pbr
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
-BuildRequires: python-d2to1
 
 %description
 The Oslo project intends to produce a python library containing
@@ -57,7 +56,6 @@ Summary:    OpenStack common configuration library
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
-BuildRequires: python3-d2to1
 
 %description -n python3-oslo-config
 The Oslo project intends to produce a python library containing
