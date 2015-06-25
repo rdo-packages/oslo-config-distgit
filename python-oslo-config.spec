@@ -7,8 +7,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    1.9.3
-Release:    2%{?dist}
+Version:    1.12.1
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -137,6 +137,9 @@ rm -fr doc/build/html/.buildinfo
 %endif
 
 %changelog
+* Thu Jun 25 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.12.1-1
+- Update to upstream 1.12.1
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2:1.9.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
