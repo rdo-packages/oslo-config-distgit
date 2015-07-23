@@ -7,7 +7,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    1.12.1
+Version:    2.0.0
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -119,9 +119,7 @@ rm -fr doc/build/html/.buildinfo
 %doc README.rst LICENSE
 %{_bindir}/oslo-config-generator
 %{python2_sitelib}/oslo_config
-%{python2_sitelib}/oslo
 %{python2_sitelib}/*.egg-info
-%{python2_sitelib}/*-nspkg.pth
 
 %files doc
 %doc LICENSE doc/build/html
@@ -131,12 +129,13 @@ rm -fr doc/build/html/.buildinfo
 %doc README.rst LICENSE
 %{_bindir}/python3-oslo-config-generator
 %{python3_sitelib}/oslo_config
-%{python3_sitelib}/oslo
 %{python3_sitelib}/*.egg-info
-%{python3_sitelib}/*-nspkg.pth
 %endif
 
 %changelog
+* Thu Jul 23 2015 Alan Pevec <alan.pevec@redhat.com> 2:2.0.0-1
+- Update to upstream 2.0.0
+
 * Thu Jun 25 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.12.1-1
 - Update to upstream 1.12.1
 
