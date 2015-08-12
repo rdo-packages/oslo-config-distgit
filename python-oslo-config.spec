@@ -45,6 +45,8 @@ Group:      Documentation
 
 BuildRequires: python-sphinx
 BuildRequires: python-oslo-sphinx >= 2.3.0
+BuildRequires: python-netaddr
+BuildRequires: python-stevedore
 
 %description doc
 Documentation for the oslo-config library.
