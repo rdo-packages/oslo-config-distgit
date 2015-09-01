@@ -36,7 +36,8 @@ parsing library from the Oslo project.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}}
 # python_provide does not exist in CBS Cloud buildroot
-Provides:   python-%{pypi_name} = %{upstream_version}
+Provides:   python-%{pypi_name} = %{epoch}:%{upstream_version}
+Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
 Requires:   python-setuptools
 Requires:   python-argparse
@@ -60,10 +61,10 @@ parsing library from the Oslo project.
 
 %package -n python2-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
-Group:      Documentation
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
 # python_provide does not exist in CBS Cloud buildroot
-Provides:   python-%{pypi_name}-doc = %{upstream_version}
+Provides:   python-%{pypi_name}-doc = %{epoch}:%{upstream_version}
+Obsoletes:  python-%{pypi_name}-doc < %{epoch}:%{upstream_version}
 
 BuildRequires: python-sphinx
 BuildRequires: python-fixtures
