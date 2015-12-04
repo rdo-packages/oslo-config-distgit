@@ -20,6 +20,7 @@ URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/oslo.config/oslo.config-master.tar.gz
 
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
+Patch0002:  0002-Allow-creating-an-Opt-with-type-str.patch
 
 BuildArch:  noarch
 
@@ -104,6 +105,7 @@ parsing library from the Oslo project.
 %setup -q -n %{sname}-%{upstream_version}
 
 %patch0001 -p1
+%patch0002 -p1
 
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
