@@ -39,12 +39,12 @@ Summary:    OpenStack common configuration library
 Provides:   python-%{pypi_name} = %{epoch}:%{upstream_version}
 Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
-Requires:   python-setuptools
 Requires:   python-argparse
-Requires:   python-six >= 1.9.0
 Requires:   python-netaddr
-Requires:   python-stevedore
 Requires:   python-pbr
+Requires:   python-setuptools
+Requires:   python-six >= 1.9.0
+Requires:   python-stevedore
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -66,10 +66,11 @@ Summary:    Documentation for OpenStack common configuration library
 Provides:   python-%{pypi_name}-doc = %{epoch}:%{upstream_version}
 Obsoletes:  python-%{pypi_name}-doc < %{epoch}:%{upstream_version}
 
-BuildRequires: python-sphinx
 BuildRequires: python-fixtures
-BuildRequires: python-oslo-sphinx >= 2.3.0
 BuildRequires: python-netaddr
+BuildRequires: python-oslo-sphinx >= 2.3.0
+BuildRequires: python-oslotest >= 1.10.0
+BuildRequires: python-sphinx
 BuildRequires: python-stevedore
 
 %description -n python2-%{pypi_name}-doc
@@ -80,15 +81,22 @@ Documentation for the oslo-config library.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
+Requires:   python3-netaddr
+Requires:   python3-pbr
 Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
-Requires:   python3-netaddr
 Requires:   python3-stevedore
-Requires:   python3-pbr
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
+BuildRequires: python3-setuptools
+# Required for tests
+BuildRequires: python3-fixtures
+BuildRequires: python3-netaddr
+BuildRequires: python3-oslo-sphinx >= 2.3.0
+BuildRequires: python3-oslotest >= 1.10.0
+BuildRequires: python3-six >= 1.9.0
+BuildRequires: python3-stevedore
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -132,6 +140,7 @@ popd
 %check
 %{__python2} setup.py test
 %if 0%{?with_python3}
+rm -rf .testrepository
 %{__python3} setup.py test
 %endif
 
