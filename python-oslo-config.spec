@@ -109,9 +109,7 @@ parsing library from the Oslo project.
 %endif
 
 %prep
-%setup -q -n %{sname}-%{upstream_version}
-
-%patch0001 -p1
+%autosetup -n %{sname}-%{upstream_version} -S git
 
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
