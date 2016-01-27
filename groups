@@ -1,3 +1,5 @@
-# UUID                                  	Group Name
-#
-c45cc1885812666ca4c0f64cf823fb60b33dbd55	oslo-config-distgit-ptl
+# UUID          Group Name
+6ddfecad023c6f4fa3ac8c4d2583c502ea675a73 	Non-Interactive Users
+cf07178273cbca21e3555d1fe490b4403e323d94       	oslo-config-distgit-core
+c45cc1885812666ca4c0f64cf823fb60b33dbd55        	oslo-config-distgit-ptl
+global:Registered-Users		Registered Users
