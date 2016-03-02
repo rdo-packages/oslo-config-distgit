@@ -49,6 +49,7 @@ Requires:   python-stevedore
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
+BuildRequires: git
 
 %description -n python2-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -90,6 +91,7 @@ Requires:   python3-stevedore
 BuildRequires: python3-devel
 BuildRequires: python3-pbr
 BuildRequires: python3-setuptools
+BuildRequires: git
 # Required for tests
 BuildRequires: python3-fixtures
 BuildRequires: python3-netaddr
