@@ -1,6 +1,5 @@
 %global sname oslo.config
 %global pypi_name oslo-config
-%global milestone a5
 
 %if 0%{?fedora}
 %global with_python3 1
@@ -10,14 +9,14 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    3.9.0
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/oslo
-Source0:    http://tarballs.openstack.org/oslo.config/oslo.config-master.tar.gz
+Source0:    http://tarballs.openstack.org/oslo.config/oslo.config-%{upstream_version}.tar.gz
 
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
@@ -165,3 +164,6 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Thu Mar 17 2016 Haikel Guemar <hguemar@fedoraproject.org> 2:3.9.0-
+- Update to 3.9.0
+
