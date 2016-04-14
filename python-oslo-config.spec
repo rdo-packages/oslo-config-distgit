@@ -45,6 +45,7 @@ Requires:   python-pbr
 Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
 Requires:   python-stevedore
+Requires:   python-debtcollector
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -87,6 +88,7 @@ Requires:   python3-pbr
 Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
 Requires:   python3-stevedore
+Requires:   python3-debtcollector
 
 BuildRequires: python3-devel
 BuildRequires: python3-pbr
