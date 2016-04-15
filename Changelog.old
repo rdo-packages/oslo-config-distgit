@@ -1,0 +1,75 @@
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2:2.4.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
+* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 2:2.4.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
+* Thu Sep 03 2015 Alan Pevec <alan.pevec@redhat.com> 2:2.4.0-1
+- Update to upstream 2.4.0
+
+* Mon Aug 17 2015 Alan Pevec <alan.pevec@redhat.com> 2:2.2.0-1
+- Update to upstream 2.2.0
+
+* Thu Jul 23 2015 Alan Pevec <alan.pevec@redhat.com> 2:2.0.0-1
+- Update to upstream 2.0.0
+
+* Thu Jun 25 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.12.1-1
+- Update to upstream 1.12.1
+
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2:1.9.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
+* Fri Mar 27 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.9.3-1
+- Update to upstream 1.9.3
+
+* Mon Feb 23 2015 Alan Pevec <alan.pevec@redhat.com> 2:1.7.0-1
+- Update to upstream 1.7.0
+
+* Sat Sep 20 2014 Alan Pevec <apevec@redhat.com> - 2:1.4.0
+- Final 1.4.0 release, Epoch bumped to make 1.4.0 win over 1.4.0.0
+
+* Wed Sep 17 2014 Alan Pevec <apevec@redhat.com> - 1:1.4.0.0-0.4.a5
+- Update to 1.4.0.0a5 milestone
+
+* Wed Sep 17 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.3.a3
+- Rename python3 subpackage
+
+* Mon Sep 15 2014 Haïkel Guémar <hguemar@fedoraproject.org> - 1:1.4.0.0-0.2.a3
+- Add python3 subpackage
+
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Fri Oct 11 2013 Alan Pevec <apevec@redhat.com> - 1.2.1-1
+- Update to 1.2.1
+
+* Tue Aug 20 2013 apevec@redhat.com 1.2.0-0.5.a3
+- Look also for $prog-dist.conf for glance-manage
+
+* Thu Aug 8 2013 pbrady@redhat.com - 1:1.2.0-0.4.a3
+- Look for /usr/share/$project/$project-dist.conf by default
+
+* Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.2.0-0.3.a3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
+* Sun Jul 21 2013 pbrady@redhat.com - 1:1.2.0-0.2.a3
+- Update to 1.2.0a3 milestone
+
+* Mon Jun 24 2013 apevec@redhat.com - 1:1.2.0-0.1.a2
+- Update to 1.2.0a2 milestone
+
+* Tue Mar 12 2013 Mark McLoughlin <markmc@redhat.com> - 1:1.1.0-1
+- Update to 1.1.0 final.
+
+* Wed Mar  6 2013 Mark McLoughlin <markmc@redhat.com> - 1.1.0-0.1.b1
+- Update to 1.1.0b1, bump epoch
+
+* Tue Mar  5 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b5
+- Update to 2013.1b5
+- Require python-argparse (#917937)
+
+* Fri Feb 22 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b4
+- Update to 2013.1b4
+
+* Sun Feb 17 2013 Mark McLoughlin <markmc@redhat.com> - 2013.1-0.1.b3
+- Initial package (#912023).
