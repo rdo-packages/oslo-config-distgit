@@ -1,7 +1,7 @@
-From 5511fe50b797f3de030be3d9a186e705277a017a Mon Sep 17 00:00:00 2001
+From 9cd2a80b68cbbd1883ac61b253d226d8c5f5537c Mon Sep 17 00:00:00 2001
 From: Ben Nemec <bnemec@redhat.com>
 Date: Tue, 12 Apr 2016 17:54:45 +0000
-Subject: [PATCH] Avoid duplicate sections in generator output
+Subject: [PATCH 2/2] Avoid duplicate sections in generator output
 
 Because option groups can be specified as either bare strings or
 OptGroup objects, it is possible to end up with duplicate sections
@@ -215,5 +215,5 @@ index 14c86e4..7e63824 100644
      def test_get_groups_single_ns(self):
          config = [("namespace1", [
 -- 
-2.4.11
+2.7.4
 
