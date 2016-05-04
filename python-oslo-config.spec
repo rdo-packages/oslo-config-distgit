@@ -20,7 +20,6 @@ URL:        https://launchpad.net/oslo
 Source0:    http://tarballs.openstack.org/oslo.config/oslo.config-master.tar.gz
 
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
-Patch0002: 0002-Avoid-duplicate-sections-in-generator-output.patch
 
 BuildArch:  noarch
 
