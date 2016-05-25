@@ -41,6 +41,7 @@ Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
 Requires:   python-argparse
 Requires:   python-netaddr
+Requires:   python-oslo-i18n >= 2.1.0
 Requires:   python-pbr
 Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
@@ -49,6 +50,7 @@ Requires:   python-debtcollector
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
+BuildRequires: python-oslo-i18n
 BuildRequires: python-pbr
 BuildRequires: git
 
@@ -84,6 +86,7 @@ Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 Requires:   python3-netaddr
+Requires:   python3-oslo-i18n
 Requires:   python3-pbr
 Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
@@ -91,6 +94,7 @@ Requires:   python3-stevedore
 Requires:   python3-debtcollector
 
 BuildRequires: python3-devel
+BuildRequires: python3-oslo-i18n
 BuildRequires: python3-pbr
 BuildRequires: python3-setuptools
 BuildRequires: git
