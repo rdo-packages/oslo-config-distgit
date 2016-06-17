@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a65312a_94e30405",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-06-17T19:31:40Z",
+      "side": 1,
+      "message": "eeek :)",
+      "revId": "575bb980289531e4407dc484e3a9db56933e9a27",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
