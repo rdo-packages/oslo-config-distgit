@@ -1,6 +1,5 @@
 %global sname oslo.config
 %global pypi_name oslo-config
-%global milestone a5
 
 %if 0%{?fedora}
 %global with_python3 1
@@ -10,8 +9,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    3.17.0
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -177,3 +176,6 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Tue Sep 06 2016 Haikel Guemar <hguemar@fedoraproject.org> 2:3.17.0-1
+- Update to 3.17.0
+
