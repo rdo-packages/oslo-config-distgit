@@ -38,7 +38,6 @@ Summary:    OpenStack common configuration library
 Provides:   python-%{pypi_name} = %{epoch}:%{upstream_version}
 Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
-Requires:   python-argparse
 Requires:   python-netaddr >= 0.7.12
 Requires:   python-oslo-i18n >= 2.1.0
 Requires:   python-rfc3986 >= 0.2.0
