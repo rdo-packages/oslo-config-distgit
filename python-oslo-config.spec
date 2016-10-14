@@ -1,6 +1,5 @@
 %global sname oslo.config
 %global pypi_name oslo-config
-%global milestone a5
 
 %if 0%{?fedora}
 %global with_python3 1
