@@ -38,13 +38,13 @@ Summary:    OpenStack common configuration library
 Provides:   python-%{pypi_name} = %{epoch}:%{upstream_version}
 Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
-Requires:   python-netaddr >= 0.7.12
+Requires:   python-netaddr >= 0.7.13
 Requires:   python-oslo-i18n >= 2.1.0
-Requires:   python-rfc3986 >= 0.2.0
+Requires:   python-rfc3986 >= 0.2.2
 Requires:   python-pbr
 Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
-Requires:   python-stevedore >= 1.10.0
+Requires:   python-stevedore >= 1.17.1
 Requires:   python-debtcollector >= 1.2.0
 
 BuildRequires: python2-devel
@@ -85,13 +85,13 @@ Documentation for the oslo-config library.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:   python3-netaddr >= 0.7.12
+Requires:   python3-netaddr >= 0.7.13
 Requires:   python3-oslo-i18n >= 2.1.0
-Requires:   python3-rfc3986 >= 0.2.0
+Requires:   python3-rfc3986 >= 0.2.2
 Requires:   python3-pbr
 Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
-Requires:   python3-stevedore >= 1.10.0
+Requires:   python3-stevedore >= 1.17.1
 Requires:   python3-debtcollector >= 1.2.0
 
 BuildRequires: python3-devel
