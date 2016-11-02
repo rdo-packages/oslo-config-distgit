@@ -16,6 +16,24 @@
       "revId": "f06890496a2e0214bd7ba0284a789d3b12eea634",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5adbc538_835f2272",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-02T09:19:06Z",
+      "side": 0,
+      "message": "There should not be fragile scripts, please open rdopkg RFE for any remaining.",
+      "parentUuid": "9ad9bd40_730ca895",
+      "revId": "f06890496a2e0214bd7ba0284a789d3b12eea634",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
