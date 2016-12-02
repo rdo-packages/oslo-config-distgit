@@ -1,8 +1,7 @@
-From 473b627bef99bc4f07d44a141f7bf397a4fe673e Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?P=C3=A1draig=20Brady?= <pbrady@redhat.com>
-Date: Mon, 11 Feb 2013 17:32:55 +0000
-Subject: [PATCH 1/1] add /usr/share/$project/*-dist.conf to the default config
- set
+From 9e78caadf9a668f799de1274a729d0b157a83330 Mon Sep 17 00:00:00 2001
+From: Javier Pena <jpena@redhat.com>
+Date: Fri, 2 Dec 2016 17:02:46 +0100
+Subject: [PATCH] add /usr/share/$project/*-dist.conf to the default config set
 
 This will lookup /usr/share/$project/$project-dist.conf
 and /usr/share/$project/$prog-dist.conf
@@ -22,23 +21,27 @@ and settings from there are overridden by any from
 For completeness, note settings in configs from --config-dir
 take precedence over any of the --config-file settings above.
 ---
- oslo_config/cfg.py | 4 ++++
- 1 file changed, 4 insertions(+)
+ oslo_config/cfg.py | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/oslo_config/cfg.py b/oslo_config/cfg.py
-index 2b983c5..cbb1c50 100644
+index b7b10bf..564341a 100644
 --- a/oslo_config/cfg.py
 +++ b/oslo_config/cfg.py
-@@ -595,6 +595,10 @@ def find_config_files(project=None, prog=None, extension='.conf'):
+@@ -651,8 +651,12 @@ def _find_config_files(project, prog, extension):
+             prog = prog[:-3]
  
-     config_files = []
-     if project:
-+        config_files.append(_search_dirs(['/usr/share/%s/' % project],
-+                                         project, '-dist%s' % extension))
-+        config_files.append(_search_dirs(['/usr/share/%s/' % project],
-+                                         prog, '-dist%s' % extension))
-         config_files.append(_search_dirs(cfg_dirs, project, extension))
-     config_files.append(_search_dirs(cfg_dirs, prog, extension))
+     cfg_dirs = _get_config_dirs(project)
+-    config_files = (_search_dirs(cfg_dirs, p, extension)
+-                    for p in [project, prog] if p)
++    config_files = [_search_dirs(['/usr/share/%s/' % project], p,
++                                 '-dist%s' % extension)
++                    for p in [project, prog] if p]
++    config_files_default = (_search_dirs(cfg_dirs, p, extension)
++                            for p in [project, prog] if p)
++    config_files.append([x for x in config_files_default if x])
+ 
+     return [x for x in config_files if x]
  
 -- 
 2.7.4
