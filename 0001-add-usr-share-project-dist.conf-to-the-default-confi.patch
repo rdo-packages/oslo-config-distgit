@@ -39,7 +39,7 @@ index b7b10bf..564341a 100644
 +                    for p in [project, prog] if p]
 +    config_files_default = (_search_dirs(cfg_dirs, p, extension)
 +                            for p in [project, prog] if p)
-+    config_files.append([x for x in config_files_default if x])
++    config_files.extend([x for x in config_files_default if x])
  
      return [x for x in config_files if x]
  
