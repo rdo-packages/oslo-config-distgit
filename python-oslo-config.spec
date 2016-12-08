@@ -18,7 +18,8 @@ License:    ASL 2.0
 URL:        https://launchpad.net/oslo
 Source0:    https://tarballs.openstack.org/oslo.config/oslo.config-%{upstream_version}.tar.gz
 
-Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
+Patch0001: 0001-revert-add-defaults-for-config-dir.patch
+Patch0002: 0002-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
 BuildArch:  noarch
 
