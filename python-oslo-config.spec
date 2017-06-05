@@ -46,6 +46,7 @@ Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
 Requires:   python-stevedore >= 1.17.1
 Requires:   python-debtcollector >= 1.2.0
+Requires:   PyYAML >= 3.10
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -76,6 +77,7 @@ BuildRequires: python-oslo-sphinx >= 2.3.0
 BuildRequires: python-oslotest >= 1.10.0
 BuildRequires: python-sphinx
 BuildRequires: python-stevedore
+BuildRequires: PyYAML
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
@@ -93,6 +95,7 @@ Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
 Requires:   python3-stevedore >= 1.17.1
 Requires:   python3-debtcollector >= 1.2.0
+Requires:   python3-PyYAML >= 3.10
 
 BuildRequires: python3-devel
 BuildRequires: python3-oslo-i18n
@@ -107,6 +110,7 @@ BuildRequires: python3-oslo-sphinx >= 2.3.0
 BuildRequires: python3-oslotest >= 1.10.0
 BuildRequires: python3-six >= 1.9.0
 BuildRequires: python3-stevedore
+BuildRequires: python3-PyYAML
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
