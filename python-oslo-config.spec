@@ -34,9 +34,6 @@ parsing library from the Oslo project.
 %package -n python2-%{pypi_name}
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}}
-# python_provide does not exist in CBS Cloud buildroot
-Provides:   python-%{pypi_name} = %{epoch}:%{upstream_version}
-Obsoletes:  python-%{pypi_name} < %{epoch}:%{upstream_version}
 
 Requires:   python-netaddr >= 0.7.13
 Requires:   python-oslo-i18n >= 2.1.0
@@ -46,6 +43,7 @@ Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
 Requires:   python-stevedore >= 1.17.1
 Requires:   python-debtcollector >= 1.2.0
+Requires:   PyYAML >= 3.10
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -66,9 +64,6 @@ parsing library from the Oslo project.
 %package -n python2-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
-# python_provide does not exist in CBS Cloud buildroot
-Provides:   python-%{pypi_name}-doc = %{epoch}:%{upstream_version}
-Obsoletes:  python-%{pypi_name}-doc < %{epoch}:%{upstream_version}
 
 BuildRequires: python-fixtures
 BuildRequires: python-netaddr
@@ -76,6 +71,7 @@ BuildRequires: python-oslo-sphinx >= 2.3.0
 BuildRequires: python-oslotest >= 1.10.0
 BuildRequires: python-sphinx
 BuildRequires: python-stevedore
+BuildRequires: PyYAML
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
@@ -93,6 +89,7 @@ Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
 Requires:   python3-stevedore >= 1.17.1
 Requires:   python3-debtcollector >= 1.2.0
+Requires:   python3-PyYAML >= 3.10
 
 BuildRequires: python3-devel
 BuildRequires: python3-oslo-i18n
@@ -107,6 +104,7 @@ BuildRequires: python3-oslo-sphinx >= 2.3.0
 BuildRequires: python3-oslotest >= 1.10.0
 BuildRequires: python3-six >= 1.9.0
 BuildRequires: python3-stevedore
+BuildRequires: python3-PyYAML
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
