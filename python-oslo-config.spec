@@ -67,7 +67,7 @@ Summary:    Documentation for OpenStack common configuration library
 
 BuildRequires: python-fixtures
 BuildRequires: python-netaddr
-BuildRequires: python-oslo-sphinx >= 2.3.0
+BuildRequires: python-openstackdocstheme
 BuildRequires: python-oslotest >= 1.10.0
 BuildRequires: python-sphinx
 BuildRequires: python-stevedore
@@ -100,7 +100,7 @@ BuildRequires: git
 # Required for tests
 BuildRequires: python3-fixtures
 BuildRequires: python3-netaddr
-BuildRequires: python3-oslo-sphinx >= 2.3.0
+BuildRequires: python3-openstackdocstheme
 BuildRequires: python3-oslotest >= 1.10.0
 BuildRequires: python3-six >= 1.9.0
 BuildRequires: python3-stevedore
@@ -138,10 +138,9 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %endif
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees  source build/html
-popd
+%{__python2} setup.py build_sphinx -b html
+# remove the sphinx-build leftovers
+rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %check
 # Tests disabled because of https://review.openstack.org/#/c/334858
