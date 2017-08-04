@@ -41,7 +41,7 @@ Requires:   python-rfc3986 >= 0.2.2
 Requires:   python-pbr
 Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
-Requires:   python-stevedore >= 1.17.1
+Requires:   python-stevedore >= 1.20.0
 Requires:   python-debtcollector >= 1.2.0
 Requires:   PyYAML >= 3.10
 
@@ -87,7 +87,7 @@ Requires:   python3-rfc3986 >= 0.2.2
 Requires:   python3-pbr
 Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
-Requires:   python3-stevedore >= 1.17.1
+Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
 Requires:   python3-PyYAML >= 3.10
 
