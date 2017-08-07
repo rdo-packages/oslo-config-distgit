@@ -39,7 +39,6 @@ Requires:   python-netaddr >= 0.7.13
 Requires:   python-oslo-i18n >= 2.1.0
 Requires:   python-rfc3986 >= 0.3.1
 Requires:   python-pbr
-Requires:   python-setuptools
 Requires:   python-six >= 1.9.0
 Requires:   python-stevedore >= 1.20.0
 Requires:   python-debtcollector >= 1.2.0
@@ -85,7 +84,6 @@ Requires:   python3-netaddr >= 0.7.13
 Requires:   python3-oslo-i18n >= 2.1.0
 Requires:   python3-rfc3986 >= 0.3.1
 Requires:   python3-pbr
-Requires:   python3-setuptools
 Requires:   python3-six >= 1.9.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
