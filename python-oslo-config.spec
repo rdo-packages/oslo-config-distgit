@@ -15,8 +15,8 @@ Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
 License:    ASL 2.0
-URL:        https://launchpad.net/oslo
-Source0:    https://tarballs.openstack.org/oslo.config/oslo.config-%{upstream_version}.tar.gz
+URL:        https://launchpad.net/%{sname}
+Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{upstream_version}.tar.gz
 
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
