@@ -35,11 +35,11 @@ parsing library from the Oslo project.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
-Requires:   python-netaddr >= 0.7.13
-Requires:   python-oslo-i18n >= 2.1.0
+Requires:   python-netaddr >= 0.7.18
+Requires:   python-oslo-i18n >= 3.15.3
 Requires:   python-rfc3986 >= 0.3.1
 Requires:   python-pbr
-Requires:   python-six >= 1.9.0
+Requires:   python-six >= 1.10.0
 Requires:   python-stevedore >= 1.20.0
 Requires:   python-debtcollector >= 1.2.0
 Requires:   PyYAML >= 3.10
@@ -80,11 +80,11 @@ Documentation for the oslo-config library.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:   python3-netaddr >= 0.7.13
-Requires:   python3-oslo-i18n >= 2.1.0
+Requires:   python3-netaddr >= 0.7.18
+Requires:   python3-oslo-i18n >= 3.15.3
 Requires:   python3-rfc3986 >= 0.3.1
 Requires:   python3-pbr
-Requires:   python3-six >= 1.9.0
+Requires:   python3-six >= 1.10.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
 Requires:   python3-PyYAML >= 3.10
@@ -100,7 +100,7 @@ BuildRequires: python3-fixtures
 BuildRequires: python3-netaddr
 BuildRequires: python3-openstackdocstheme
 BuildRequires: python3-oslotest >= 1.10.0
-BuildRequires: python3-six >= 1.9.0
+BuildRequires: python3-six >= 1.10.0
 BuildRequires: python3-stevedore
 BuildRequires: python3-PyYAML
 
