@@ -35,20 +35,25 @@ parsing library from the Oslo project.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
-Requires:   python-netaddr >= 0.7.13
-Requires:   python-oslo-i18n >= 2.1.0
-Requires:   python-rfc3986 >= 0.3.1
-Requires:   python-pbr
-Requires:   python-six >= 1.9.0
-Requires:   python-stevedore >= 1.20.0
-Requires:   python-debtcollector >= 1.2.0
+Requires:   python2-oslo-i18n >= 3.15.3
+Requires:   python2-rfc3986 >= 0.3.1
+Requires:   python2-pbr
+Requires:   python2-six >= 1.10.0
+Requires:   python2-stevedore >= 1.20.0
+Requires:   python2-debtcollector >= 1.2.0
+%if 0%{?fedora} > 0
+Requires:   python2-netaddr >= 0.7.18
+Requires:   python2-pyyaml >= 3.10
+%else
+Requires:   python-netaddr >= 0.7.18
 Requires:   PyYAML >= 3.10
+%endif
 
 BuildRequires: python2-devel
-BuildRequires: python-setuptools
-BuildRequires: python-oslo-i18n
-BuildRequires: python-rfc3986
-BuildRequires: python-pbr
+BuildRequires: python2-setuptools
+BuildRequires: python2-oslo-i18n
+BuildRequires: python2-rfc3986
+BuildRequires: python2-pbr
 BuildRequires: git
 
 %description -n python2-%{pypi_name}
@@ -64,13 +69,18 @@ parsing library from the Oslo project.
 Summary:    Documentation for OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
 
-BuildRequires: python-fixtures
+BuildRequires: python2-fixtures
+BuildRequires: python2-openstackdocstheme
+BuildRequires: python2-oslotest >= 1.10.0
+BuildRequires: python2-sphinx
+BuildRequires: python2-stevedore
+%if 0%{?fedora} > 0
+BuildRequires: python2-netaddr
+BuildRequires: python2-pyyaml
+%else
 BuildRequires: python-netaddr
-BuildRequires: python-openstackdocstheme
-BuildRequires: python-oslotest >= 1.10.0
-BuildRequires: python-sphinx
-BuildRequires: python-stevedore
 BuildRequires: PyYAML
+%endif
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
@@ -80,11 +90,11 @@ Documentation for the oslo-config library.
 Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
-Requires:   python3-netaddr >= 0.7.13
-Requires:   python3-oslo-i18n >= 2.1.0
+Requires:   python3-netaddr >= 0.7.18
+Requires:   python3-oslo-i18n >= 3.15.3
 Requires:   python3-rfc3986 >= 0.3.1
 Requires:   python3-pbr
-Requires:   python3-six >= 1.9.0
+Requires:   python3-six >= 1.10.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
 Requires:   python3-PyYAML >= 3.10
@@ -100,7 +110,7 @@ BuildRequires: python3-fixtures
 BuildRequires: python3-netaddr
 BuildRequires: python3-openstackdocstheme
 BuildRequires: python3-oslotest >= 1.10.0
-BuildRequires: python3-six >= 1.9.0
+BuildRequires: python3-six >= 1.10.0
 BuildRequires: python3-stevedore
 BuildRequires: python3-PyYAML
 
