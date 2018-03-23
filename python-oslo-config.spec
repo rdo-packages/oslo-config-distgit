@@ -146,7 +146,8 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %endif
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
-%{__python2} setup.py build_sphinx -b html
+export PYTHONPATH="%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
+sphinx-build -W -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 
