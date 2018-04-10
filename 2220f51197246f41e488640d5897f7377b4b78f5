@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ab14d0d_c5d857f2",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2018-04-10T08:34:00Z",
+      "side": 1,
+      "message": "a morning snarky remark: I fail to see how is this progress vs nice one-liner :( but, yeah, upstream it is",
+      "revId": "2220f51197246f41e488640d5897f7377b4b78f5",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
