@@ -1,5 +1,6 @@
 %global sname oslo.config
 %global pypi_name oslo-config
+%global with_doc 1
 
 %if 0%{?fedora}
 %global with_python3 1
@@ -65,6 +66,7 @@ useful.
 The oslo-config library is a command line and configuration file
 parsing library from the Oslo project.
 
+%if 0%{?with_doc}
 %package -n python2-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
@@ -84,6 +86,7 @@ BuildRequires: PyYAML
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
+%endif
 
 %if 0%{?with_python3}
 %package -n python3-%{pypi_name}
@@ -146,10 +149,12 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %endif
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
+%if 0%{?with_doc}
 export PYTHONPATH="%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
 sphinx-build -W -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
+%endif
 
 %check
 # Tests disabled because of https://review.openstack.org/#/c/334858
@@ -167,9 +172,11 @@ rm -rf .testrepository
 %{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 
+%if 0%{?with_doc}
 %files -n python2-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %if 0%{?with_python3}
 %files -n python3-%{pypi_name}
