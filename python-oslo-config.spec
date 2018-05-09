@@ -134,27 +134,27 @@ parsing library from the Oslo project.
 rm -rf {test-,}requirements.txt
 
 %build
-%{__python2} setup.py build
 %if 0%{?with_python3}
-%{__python3} setup.py build
+%py3_build
+%endif
+%py2_build
+
+%if 0%{?with_doc}
+export PYTHONPATH=.
+sphinx-build -W -b html doc/source doc/build/html
+# remove the sphinx-build leftovers
+rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
 %if 0%{?with_python3}
 # we build the python3 version first not to crush the python2
 # version of oslo-config-generator
-%{__python3} setup.py install -O1 --skip-build --root %{buildroot}
+%py3_install
 mv %{buildroot}%{_bindir}/oslo-config-generator \
    %{buildroot}%{_bindir}/python3-oslo-config-generator
 %endif
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
-
-%if 0%{?with_doc}
-export PYTHONPATH="%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
-sphinx-build -W -b html doc/source doc/build/html
-# remove the sphinx-build leftovers
-rm -rf doc/build/html/.{doctrees,buildinfo}
-%endif
+%py2_install
 
 %check
 # Tests disabled because of https://review.openstack.org/#/c/334858
