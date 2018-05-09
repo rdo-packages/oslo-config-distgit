@@ -56,6 +56,11 @@ BuildRequires: python2-oslo-i18n
 BuildRequires: python2-rfc3986
 BuildRequires: python2-pbr
 BuildRequires: git
+# Required for tests
+BuildRequires: python2-testscenarios
+BuildRequires: python2-testrepository
+BuildRequires: python2-testtools
+BuildRequires: python2-oslotest
 
 %description -n python2-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -116,6 +121,10 @@ BuildRequires: python3-oslotest >= 1.10.0
 BuildRequires: python3-six >= 1.10.0
 BuildRequires: python3-stevedore
 BuildRequires: python3-PyYAML
+BuildRequires: python3-testscenarios
+BuildRequires: python3-testrepository
+BuildRequires: python3-testtools
+BuildRequires: python3-oslotest
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -157,12 +166,10 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %py2_install
 
 %check
-# Tests disabled because of https://review.openstack.org/#/c/334858
-# Re-enable them when it's fixed.
-%{__python2} setup.py test || :
+%{__python2} setup.py test
 %if 0%{?with_python3}
 rm -rf .testrepository
-%{__python3} setup.py test || :
+%{__python3} setup.py test
 %endif
 
 %files -n python2-%{pypi_name}
