@@ -43,9 +43,11 @@ Requires:   python2-six >= 1.10.0
 Requires:   python2-stevedore >= 1.20.0
 Requires:   python2-debtcollector >= 1.2.0
 %if 0%{?fedora} > 0
+Requires:   python2-enum34
 Requires:   python2-netaddr >= 0.7.18
 Requires:   python2-pyyaml >= 3.10
 %else
+Requires:   python-enum34
 Requires:   python-netaddr >= 0.7.18
 Requires:   PyYAML >= 3.10
 %endif
