@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_47f2189c",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-05-15T08:44:38Z",
+      "side": 1,
+      "message": "can move this in fedora with python2-enum34 else python-enum34",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "595356b6167885d09b47d6bb8f3e0fa0a29263a2",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
