@@ -63,6 +63,21 @@ BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
+%if 0%{?fedora} > 0
+BuildRequires: python2-docutils
+BuildRequires: python2-enum34
+BuildRequires: python2-netaddr
+BuildRequires: python2-pyyaml
+BuildRequires: python2-sphinx
+BuildRequires: python2-stevedore
+%else
+BuildRequires: python-docutils
+BuildRequires: python-enum34
+BuildRequires: python-netaddr
+BuildRequires: PyYAML
+BuildRequires: python-sphinx
+BuildRequires: python-stevedore
+%endif
 
 %description -n python2-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -81,15 +96,6 @@ Summary:    Documentation for OpenStack common configuration library
 BuildRequires: python2-fixtures
 BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
-BuildRequires: python2-sphinx
-BuildRequires: python2-stevedore
-%if 0%{?fedora} > 0
-BuildRequires: python2-netaddr
-BuildRequires: python2-pyyaml
-%else
-BuildRequires: python-netaddr
-BuildRequires: PyYAML
-%endif
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
