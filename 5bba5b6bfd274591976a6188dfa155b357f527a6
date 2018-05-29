@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_6e34d0dd",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-05-29T05:29:44Z",
+      "side": 1,
+      "message": "From where these BRs came, are u seeing any error without these?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "5bba5b6bfd274591976a6188dfa155b357f527a6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bab921fb_4e310cec",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-05-29T05:29:44Z",
+      "side": 1,
+      "message": "sphinx is also a test requirement:-https://github.com/openstack/oslo.config/blob/master/test-requirements.txt#L18, so ok to add it.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "5bba5b6bfd274591976a6188dfa155b357f527a6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
