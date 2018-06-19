@@ -9,7 +9,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    3.22.0
+Version:    3.22.2
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -175,6 +175,9 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Tue Jun 19 2018 RDO <dev@lists.rdoproject.org> 2:3.22.2-1
+- Update to 3.22.2
+
 * Tue Feb 07 2017 Alfredo Moralejo <amoralej@redhat.com> 2:3.22.0-1
 - Update to 3.22.0
 
