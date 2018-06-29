@@ -1,6 +1,7 @@
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
+%global repo_bootstrap 0
 
 %if 0%{?fedora}
 %global with_python3 1
@@ -63,6 +64,10 @@ BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
+
+%if 0%{?repo_bootstrap} == 0
+BuildRequires: python2-oslo-log
+%endif
 
 %description -n python2-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -128,6 +133,10 @@ BuildRequires: python3-testrepository
 BuildRequires: python3-testtools
 BuildRequires: python3-oslotest
 
+%if 0%{?repo_bootstrap} == 0
+BuildRequires: python3-oslo-log
+%endif
+
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
 infrastructure code shared by OpenStack projects. The APIs provided
@@ -168,10 +177,12 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %py2_install
 
 %check
+%if 0%{?repo_bootstrap} == 0
 %{__python2} setup.py test
 %if 0%{?with_python3}
 rm -rf .testrepository
 %{__python3} setup.py test
+%endif
 %endif
 
 %files -n python2-%{pypi_name}
