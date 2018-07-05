@@ -65,12 +65,14 @@ BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
 %if 0%{?fedora} || 0%{?rhel} >= 8
+BuildRequires: python2-docutils
 BuildRequires: python2-enum34
 BuildRequires: python2-requests-mock
 BuildRequires: python2-netaddr
 BuildRequires: python2-pyyaml
 BuildRequires: python2-stevedore
 %else
+BuildRequires: python-docutils
 BuildRequires: python-enum34
 BuildRequires: python-requests-mock
 BuildRequires: python-netaddr
