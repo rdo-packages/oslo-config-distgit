@@ -68,11 +68,13 @@ BuildRequires: python2-docutils
 BuildRequires: python2-enum34
 BuildRequires: python2-netaddr
 BuildRequires: python2-pyyaml
+BuildRequires: python2-stevedore
 %else
 BuildRequires: python-docutils
 BuildRequires: python-enum34
 BuildRequires: python-netaddr
 BuildRequires: PyYAML
+BuildRequires: python-stevedore
 %endif
 
 %description -n python2-%{pypi_name}
