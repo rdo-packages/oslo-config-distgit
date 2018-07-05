@@ -69,11 +69,13 @@ BuildRequires: python2-enum34
 BuildRequires: python2-requests-mock
 BuildRequires: python2-netaddr
 BuildRequires: python2-pyyaml
+BuildRequires: python2-stevedore
 %else
 BuildRequires: python-enum34
 BuildRequires: python-requests-mock
 BuildRequires: python-netaddr
 BuildRequires: PyYAML
+BuildRequires: python-stevedore
 %endif
 
 %if 0%{?repo_bootstrap} == 0
