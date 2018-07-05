@@ -64,10 +64,12 @@ BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
 %if 0%{?fedora} > 0
+BuildRequires: python2-docutils
 BuildRequires: python2-enum34
 BuildRequires: python2-netaddr
 BuildRequires: python2-pyyaml
 %else
+BuildRequires: python-docutils
 BuildRequires: python-enum34
 BuildRequires: python-netaddr
 BuildRequires: PyYAML
