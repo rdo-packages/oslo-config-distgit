@@ -65,9 +65,15 @@ BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
 %if 0%{?fedora} || 0%{?rhel} >= 8
+BuildRequires: python2-enum34
 BuildRequires: python2-requests-mock
+BuildRequires: python2-netaddr
+BuildRequires: python2-pyyaml
 %else
+BuildRequires: python-enum34
 BuildRequires: python-requests-mock
+BuildRequires: python-netaddr
+BuildRequires: PyYAML
 %endif
 
 %if 0%{?repo_bootstrap} == 0
@@ -93,15 +99,6 @@ BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
 BuildRequires: python2-sphinx
 BuildRequires: python2-stevedore
-%if 0%{?fedora} || 0%{?rhel} >= 8
-BuildRequires: python2-enum34
-BuildRequires: python2-netaddr
-BuildRequires: python2-pyyaml
-%else
-BuildRequires: python-enum34
-BuildRequires: python-netaddr
-BuildRequires: PyYAML
-%endif
 
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
