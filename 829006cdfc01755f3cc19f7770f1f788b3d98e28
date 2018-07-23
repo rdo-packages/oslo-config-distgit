@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_80c49c92",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2018-07-23T12:26:28Z",
+      "side": 1,
+      "message": "%if 0%{?fedora} || 0%{?rhel} \u003e\u003d 8\n\nis now used in Fedora specs",
+      "revId": "829006cdfc01755f3cc19f7770f1f788b3d98e28",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
