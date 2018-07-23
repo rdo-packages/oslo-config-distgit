@@ -39,6 +39,7 @@ Summary:    OpenStack common configuration library
 Requires:   python2-oslo-i18n >= 3.15.3
 Requires:   python2-rfc3986 >= 0.3.1
 Requires:   python2-pbr
+Requires:   python2-requests >= 2.14.2
 Requires:   python2-six >= 1.10.0
 Requires:   python2-stevedore >= 1.20.0
 Requires:   python2-debtcollector >= 1.2.0
@@ -63,6 +64,7 @@ BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
+BuildRequires: python2-requests-mock
 
 %if 0%{?repo_bootstrap} == 0
 BuildRequires: python2-oslo-log
@@ -108,6 +110,7 @@ Requires:   python3-netaddr >= 0.7.18
 Requires:   python3-oslo-i18n >= 3.15.3
 Requires:   python3-rfc3986 >= 0.3.1
 Requires:   python3-pbr
+Requires:   python3-requests >= 2.14.2
 Requires:   python3-six >= 1.10.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
@@ -131,6 +134,7 @@ BuildRequires: python3-testscenarios
 BuildRequires: python3-testrepository
 BuildRequires: python3-testtools
 BuildRequires: python3-oslotest
+BuildRequires: python3-requests-mock
 
 %if 0%{?repo_bootstrap} == 0
 BuildRequires: python3-oslo-log
