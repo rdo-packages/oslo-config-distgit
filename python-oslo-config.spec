@@ -160,7 +160,7 @@ rm -rf {test-,}requirements.txt
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
