@@ -59,6 +59,7 @@ BuildRequires: python2-rfc3986
 BuildRequires: python2-pbr
 BuildRequires: git
 # Required for tests
+BuildRequires: python2-requests-mock
 BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
@@ -82,6 +83,7 @@ parsing library from the Oslo project.
 Summary:    Documentation for OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
 
+BuildRequires: python2-enum34
 BuildRequires: python2-fixtures
 BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
@@ -160,7 +162,7 @@ rm -rf {test-,}requirements.txt
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
