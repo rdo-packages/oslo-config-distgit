@@ -63,6 +63,11 @@ BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
+%if 0%{?fedora} > 0
+BuildRequires: python2-requests-mock
+%else
+BuildRequires: python-requests-mock
+%endif
 
 %if 0%{?repo_bootstrap} == 0
 BuildRequires: python2-oslo-log
@@ -88,9 +93,11 @@ BuildRequires: python2-oslotest >= 1.10.0
 BuildRequires: python2-sphinx
 BuildRequires: python2-stevedore
 %if 0%{?fedora} > 0
+BuildRequires: python2-enum34
 BuildRequires: python2-netaddr
 BuildRequires: python2-pyyaml
 %else
+BuildRequires: python-enum34
 BuildRequires: python-netaddr
 BuildRequires: PyYAML
 %endif
@@ -160,7 +167,7 @@ rm -rf {test-,}requirements.txt
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build -b html doc/source doc/build/html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
