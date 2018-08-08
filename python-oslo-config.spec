@@ -2,8 +2,6 @@
 %global pypi_name oslo-config
 %global with_doc 1
 
-%global repo_bootstrap 1
-
 %if 0%{?fedora} || 0%{?rhel} >= 8
 %global with_python3 1
 %endif
@@ -80,9 +78,7 @@ BuildRequires: PyYAML
 BuildRequires: python-stevedore
 %endif
 
-%if 0%{?repo_bootstrap} == 0
 BuildRequires: python2-oslo-log
-%endif
 
 %description -n python2-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -143,9 +139,7 @@ BuildRequires: python3-testtools
 BuildRequires: python3-oslotest
 BuildRequires: python3-requests-mock
 
-%if 0%{?repo_bootstrap} == 0
 BuildRequires: python3-oslo-log
-%endif
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -187,12 +181,10 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %py2_install
 
 %check
-%if 0%{?repo_bootstrap} == 0
 %{__python2} setup.py test
 %if 0%{?with_python3}
 rm -rf .testrepository
 %{__python3} setup.py test
-%endif
 %endif
 
 %files -n python2-%{pypi_name}
