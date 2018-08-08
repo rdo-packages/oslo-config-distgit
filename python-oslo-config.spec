@@ -187,7 +187,7 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %py2_install
 
 %check
-%if 0%{?repo_bootstrap} == 0
+%if 0%{?repo_bootstrap} == 1
 %{__python2} setup.py test
 %if 0%{?with_python3}
 rm -rf .testrepository
