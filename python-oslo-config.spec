@@ -176,13 +176,18 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 %install
 %if 0%{?with_python3}
-# we build the python3 version first not to crush the python2
-# version of oslo-config-generator
 %py3_install
-mv %{buildroot}%{_bindir}/oslo-config-generator \
-   %{buildroot}%{_bindir}/python3-oslo-config-generator
+pushd %{buildroot}/%{_bindir}
+mv oslo-config-generator oslo-config-generator-%{python3_version}
+ln -s oslo-config-generator-%{python3_version} oslo-config-generator-3
+popd
 %endif
 %py2_install
+pushd %{buildroot}/%{_bindir}
+mv oslo-config-generator oslo-config-generator-%{python2_version}
+ln -s oslo-config-generator-%{python2_version} oslo-config-generator-2
+ln -s oslo-config-generator-%{python2_version} oslo-config-generator
+popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
@@ -197,6 +202,7 @@ rm -rf .testrepository
 %doc README.rst
 %license LICENSE
 %{_bindir}/oslo-config-generator
+%{_bindir}/oslo-config-generator-2*
 %{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 
@@ -210,7 +216,7 @@ rm -rf .testrepository
 %files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
-%{_bindir}/python3-oslo-config-generator
+%{_bindir}/oslo-config-generator-3*
 %{python3_sitelib}/oslo_config
 %{python3_sitelib}/*.egg-info
 %endif
