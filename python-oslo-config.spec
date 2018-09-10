@@ -60,6 +60,7 @@ BuildRequires: python2-rfc3986
 BuildRequires: python2-pbr
 BuildRequires: git
 # Required for tests
+BuildRequires: python2-sphinx
 BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
