@@ -179,17 +179,24 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %if 0%{?with_python3}
 %py3_install
 pushd %{buildroot}/%{_bindir}
-mv oslo-config-generator oslo-config-generator-%{python3_version}
-ln -s oslo-config-generator-%{python3_version} oslo-config-generator-3
+for i in generator validator
+do
+mv oslo-config-$i oslo-config-$i-%{python3_version}
+ln -s oslo-config-$i-%{python3_version} oslo-config-$i-3
+done
 # Let's keep backwards compatibility for some time
 ln -s oslo-config-generator-%{python3_version} python3-oslo-config-generator
+
 popd
 %endif
 %py2_install
 pushd %{buildroot}/%{_bindir}
-mv oslo-config-generator oslo-config-generator-%{python2_version}
-ln -s oslo-config-generator-%{python2_version} oslo-config-generator-2
-ln -s oslo-config-generator-%{python2_version} oslo-config-generator
+for i in generator validator
+do
+mv oslo-config-$i oslo-config-$i-%{python2_version}
+ln -s oslo-config-$i-%{python2_version} oslo-config-$i-2
+ln -s oslo-config-$i-%{python2_version} oslo-config-$i
+done
 popd
 
 %check
@@ -206,6 +213,8 @@ rm -rf .testrepository
 %license LICENSE
 %{_bindir}/oslo-config-generator
 %{_bindir}/oslo-config-generator-2*
+%{_bindir}/oslo-config-validator
+%{_bindir}/oslo-config-validator-2*
 %{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 
@@ -221,6 +230,7 @@ rm -rf .testrepository
 %license LICENSE
 %{_bindir}/oslo-config-generator-3*
 %{_bindir}/python3-oslo-config-generator
+%{_bindir}/oslo-config-validator-3*
 %{python3_sitelib}/oslo_config
 %{python3_sitelib}/*.egg-info
 %endif
