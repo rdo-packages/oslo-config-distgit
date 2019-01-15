@@ -60,7 +60,6 @@ BuildRequires: python2-rfc3986
 BuildRequires: python2-pbr
 BuildRequires: git
 # Required for tests
-BuildRequires: python2-sphinx
 BuildRequires: python2-testscenarios
 BuildRequires: python2-testrepository
 BuildRequires: python2-testtools
@@ -96,11 +95,10 @@ parsing library from the Oslo project.
 %package -n python2-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}-doc}
-
+BuildRequires: python2-sphinx
 BuildRequires: python2-fixtures
 BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
-BuildRequires: python2-sphinx
 BuildRequires: python2-stevedore
 
 %description -n python2-%{pypi_name}-doc
@@ -131,7 +129,6 @@ BuildRequires: git
 # Required for tests
 BuildRequires: python3-fixtures
 BuildRequires: python3-netaddr
-BuildRequires: python3-openstackdocstheme
 BuildRequires: python3-oslotest >= 1.10.0
 BuildRequires: python3-six >= 1.10.0
 BuildRequires: python3-stevedore
@@ -162,6 +159,11 @@ parsing library from the Oslo project.
 sed -i '/\/usr\/bin\/env/d' oslo_config/validator.py
 # let RPM handle deps
 rm -rf {test-,}requirements.txt
+
+# Remove tests requiring sphinx if sphinx is not available
+%if 0%{?with_doc} == 0
+rm oslo_config/tests/test_sphinxext.py
+%endif
 
 %build
 %if 0%{?with_python3}
