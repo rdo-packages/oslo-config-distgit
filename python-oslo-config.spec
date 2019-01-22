@@ -204,10 +204,10 @@ popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
-%{__python2} setup.py test
+PYTHON=python2 %{__python2} setup.py test
 %if 0%{?with_python3}
 rm -rf .testrepository
-%{__python3} setup.py test
+PYTHON=python3 %{__python3} setup.py test
 %endif
 %endif
 
