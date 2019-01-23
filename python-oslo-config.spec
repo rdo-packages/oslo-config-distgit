@@ -100,7 +100,9 @@ BuildRequires: python2-fixtures
 BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
 BuildRequires: python2-stevedore
-
+%if 0%{?with_python3}
+BuildRequires: python3-sphinx
+%endif
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
 %endif
@@ -163,6 +165,7 @@ rm -rf {test-,}requirements.txt
 # Remove tests requiring sphinx if sphinx is not available
 %if 0%{?with_doc} == 0
 rm oslo_config/tests/test_sphinxext.py
+rm oslo_config/tests/test_sphinxconfiggen.py
 %endif
 
 %build
