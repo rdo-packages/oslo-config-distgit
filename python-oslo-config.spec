@@ -37,9 +37,9 @@ Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
 Requires:   python2-oslo-i18n >= 3.15.3
-Requires:   python2-rfc3986 >= 0.3.1
+Requires:   python2-rfc3986 >= 1.2.0
 Requires:   python2-pbr
-Requires:   python2-requests >= 2.14.2
+Requires:   python2-requests >= 2.18.0
 Requires:   python2-six >= 1.10.0
 Requires:   python2-stevedore >= 1.20.0
 Requires:   python2-debtcollector >= 1.2.0
@@ -114,9 +114,9 @@ Summary:    OpenStack common configuration library
 
 Requires:   python3-netaddr >= 0.7.18
 Requires:   python3-oslo-i18n >= 3.15.3
-Requires:   python3-rfc3986 >= 0.3.1
+Requires:   python3-rfc3986 >= 1.2.0
 Requires:   python3-pbr
-Requires:   python3-requests >= 2.14.2
+Requires:   python3-requests >= 2.18.0
 Requires:   python3-six >= 1.10.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
