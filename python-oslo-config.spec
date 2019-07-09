@@ -100,8 +100,10 @@ BuildRequires: python2-fixtures
 BuildRequires: python2-openstackdocstheme
 BuildRequires: python2-oslotest >= 1.10.0
 BuildRequires: python2-stevedore
+BuildRequires: python2-sphinxcontrib-apidoc
 %if 0%{?with_python3}
 BuildRequires: python3-sphinx
+BuildRequires: python3-sphinxcontrib-apidoc
 %endif
 %description -n python2-%{pypi_name}-doc
 Documentation for the oslo-config library.
