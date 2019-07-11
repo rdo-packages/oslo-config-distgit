@@ -61,7 +61,7 @@ BuildRequires: python2-pbr
 BuildRequires: git
 # Required for tests
 BuildRequires: python2-testscenarios
-BuildRequires: python2-testrepository
+BuildRequires: python2-stestr
 BuildRequires: python2-testtools
 BuildRequires: python2-oslotest
 %if 0%{?fedora} || 0%{?rhel} >= 8
@@ -138,7 +138,7 @@ BuildRequires: python3-six >= 1.10.0
 BuildRequires: python3-stevedore
 BuildRequires: python3-PyYAML
 BuildRequires: python3-testscenarios
-BuildRequires: python3-testrepository
+BuildRequires: python3-stestr
 BuildRequires: python3-testtools
 BuildRequires: python3-oslotest
 BuildRequires: python3-requests-mock
@@ -209,10 +209,9 @@ popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
-PYTHON=python2 %{__python2} setup.py test
+PYTHON=python2 stestr run
 %if 0%{?with_python3}
-rm -rf .testrepository
-PYTHON=python3 %{__python3} setup.py test
+PYTHON=python3 stestr-3 run
 %endif
 %endif
 
