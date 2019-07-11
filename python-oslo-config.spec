@@ -244,3 +244,4 @@ PYTHON=python3 %{__python3} setup.py test
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.config/commit/?id=dea9af2fe91e3abe6ca88ea8739cff023191abb9
