@@ -1,6 +1,8 @@
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
+# Needed for train bootstrap
+%global repo_bootstrap 1
 
 %if 0%{?fedora} || 0%{?rhel} >= 8
 %global with_python3 1
@@ -10,8 +12,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    6.11.1
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -243,3 +245,6 @@ PYTHON=python3 stestr-3 run
 %endif
 
 %changelog
+* Tue Sep 17 2019 RDO <dev@lists.rdoproject.org> 2:6.11.1-1
+- Update to 6.11.1
+
