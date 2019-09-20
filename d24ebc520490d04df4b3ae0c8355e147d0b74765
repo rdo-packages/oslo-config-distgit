@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b87f574_0ae270a3",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-09-20T14:26:24Z",
+      "side": 1,
+      "message": "In python3 python3-enum34 is provided in python3-libs. You can remove it when running with python3.",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "d24ebc520490d04df4b3ae0c8355e147d0b74765",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17a6d9ac_15996695",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2019-09-20T14:26:24Z",
+      "side": 1,
+      "message": "python%{pyver}-PyYAML",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "d24ebc520490d04df4b3ae0c8355e147d0b74765",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
