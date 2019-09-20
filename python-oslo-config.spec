@@ -1,10 +1,17 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
-
-%if 0%{?fedora} || 0%{?rhel} >= 8
-%global with_python3 1
-%endif
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
@@ -32,57 +39,56 @@ useful.
 The oslo-config library is a command line and configuration file
 parsing library from the Oslo project.
 
-%package -n python2-%{pypi_name}
+%package -n python%{pyver}-%{pypi_name}
 Summary:    OpenStack common configuration library
-%{?python_provide:%python_provide python2-%{pypi_name}}
-
-Requires:   python2-oslo-i18n >= 3.15.3
-Requires:   python2-rfc3986 >= 1.2.0
-Requires:   python2-pbr
-Requires:   python2-requests >= 2.18.0
-Requires:   python2-six >= 1.10.0
-Requires:   python2-stevedore >= 1.20.0
-Requires:   python2-debtcollector >= 1.2.0
-%if 0%{?fedora} || 0%{?rhel} >= 8
-Requires:   python2-enum34
-Requires:   python2-netaddr >= 0.7.18
-Requires:   python2-pyyaml >= 3.10
-%else
-Requires:   python-enum34
-Requires:   python-netaddr >= 0.7.18
-Requires:   PyYAML >= 3.10
+%{?python_provide:%python_provide python%{pyver}-%{pypi_name}}
+%if %{pyver} == 3
+Obsoletes: python2-%{pypi_name} < %{version}-%{release}
 %endif
 
-BuildRequires: python2-devel
-BuildRequires: python2-setuptools
-BuildRequires: python2-oslo-i18n
-BuildRequires: python2-rfc3986
-BuildRequires: python2-pbr
+Requires:   python%{pyver}-oslo-i18n >= 3.15.3
+Requires:   python%{pyver}-rfc3986 >= 1.2.0
+Requires:   python%{pyver}-pbr
+Requires:   python%{pyver}-requests >= 2.18.0
+Requires:   python%{pyver}-six >= 1.10.0
+Requires:   python%{pyver}-stevedore >= 1.20.0
+Requires:   python%{pyver}-debtcollector >= 1.2.0
+%if %{pyver} == 2
+Requires:   python-netaddr >= 0.7.18
+Requires:   PyYAML >= 3.10
+%else
+Requires:   python%{pyver}-netaddr >= 0.7.18
+Requires:   python%{pyver}-PyYAML >= 3.10
+%endif
+
+BuildRequires: python%{pyver}-devel
+BuildRequires: python%{pyver}-setuptools
+BuildRequires: python%{pyver}-oslo-i18n
+BuildRequires: python%{pyver}-rfc3986
+BuildRequires: python%{pyver}-pbr
 BuildRequires: git
 # Required for tests
-BuildRequires: python2-testscenarios
-BuildRequires: python2-stestr
-BuildRequires: python2-testtools
-BuildRequires: python2-oslotest
-%if 0%{?fedora} || 0%{?rhel} >= 8
-BuildRequires: python2-enum34
-BuildRequires: python2-requests-mock
-BuildRequires: python2-netaddr
-BuildRequires: python2-pyyaml
-BuildRequires: python2-stevedore
-%else
-BuildRequires: python-enum34
+BuildRequires: python%{pyver}-testscenarios
+BuildRequires: python%{pyver}-stestr
+BuildRequires: python%{pyver}-testtools
+BuildRequires: python%{pyver}-oslotest
+%if %{pyver} == 2
 BuildRequires: python-requests-mock
 BuildRequires: python-netaddr
 BuildRequires: PyYAML
 BuildRequires: python-stevedore
+%else
+BuildRequires: python%{pyver}-requests-mock
+BuildRequires: python%{pyver}-netaddr
+BuildRequires: python%{pyver}-PyYAML
+BuildRequires: python%{pyver}-stevedore
 %endif
 
 %if 0%{?repo_bootstrap} == 0
-BuildRequires: python2-oslo-log
+BuildRequires: python%{pyver}-oslo-log
 %endif
 
-%description -n python2-%{pypi_name}
+%description -n python%{pyver}-%{pypi_name}
 The Oslo project intends to produce a python library containing
 infrastructure code shared by OpenStack projects. The APIs provided
 by the project should be high quality, stable, consistent and generally
@@ -92,69 +98,18 @@ The oslo-config library is a command line and configuration file
 parsing library from the Oslo project.
 
 %if 0%{?with_doc}
-%package -n python2-%{pypi_name}-doc
+%package -n python%{pyver}-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
-%{?python_provide:%python_provide python2-%{pypi_name}-doc}
-BuildRequires: python2-sphinx
-BuildRequires: python2-fixtures
-BuildRequires: python2-openstackdocstheme
-BuildRequires: python2-oslotest >= 1.10.0
-BuildRequires: python2-stevedore
-BuildRequires: python2-sphinxcontrib-apidoc
-%if 0%{?with_python3}
-BuildRequires: python3-sphinx
-BuildRequires: python3-sphinxcontrib-apidoc
-%endif
-%description -n python2-%{pypi_name}-doc
+%{?python_provide:%python_provide python%{pyver}-%{pypi_name}-doc}
+BuildRequires: python%{pyver}-sphinx
+BuildRequires: python%{pyver}-fixtures
+BuildRequires: python%{pyver}-openstackdocstheme
+BuildRequires: python%{pyver}-oslotest >= 1.10.0
+BuildRequires: python%{pyver}-stevedore
+BuildRequires: python%{pyver}-sphinxcontrib-apidoc
+
+%description -n python%{pyver}-%{pypi_name}-doc
 Documentation for the oslo-config library.
-%endif
-
-%if 0%{?with_python3}
-%package -n python3-%{pypi_name}
-Summary:    OpenStack common configuration library
-%{?python_provide:%python_provide python3-%{pypi_name}}
-
-Requires:   python3-netaddr >= 0.7.18
-Requires:   python3-oslo-i18n >= 3.15.3
-Requires:   python3-rfc3986 >= 1.2.0
-Requires:   python3-pbr
-Requires:   python3-requests >= 2.18.0
-Requires:   python3-six >= 1.10.0
-Requires:   python3-stevedore >= 1.20.0
-Requires:   python3-debtcollector >= 1.2.0
-Requires:   python3-PyYAML >= 3.10
-
-BuildRequires: python3-devel
-BuildRequires: python3-oslo-i18n
-BuildRequires: python3-rfc3986
-BuildRequires: python3-pbr
-BuildRequires: python3-setuptools
-BuildRequires: git
-# Required for tests
-BuildRequires: python3-fixtures
-BuildRequires: python3-netaddr
-BuildRequires: python3-oslotest >= 1.10.0
-BuildRequires: python3-six >= 1.10.0
-BuildRequires: python3-stevedore
-BuildRequires: python3-PyYAML
-BuildRequires: python3-testscenarios
-BuildRequires: python3-stestr
-BuildRequires: python3-testtools
-BuildRequires: python3-oslotest
-BuildRequires: python3-requests-mock
-
-%if 0%{?repo_bootstrap} == 0
-BuildRequires: python3-oslo-log
-%endif
-
-%description -n python3-%{pypi_name}
-The Oslo project intends to produce a python library containing
-infrastructure code shared by OpenStack projects. The APIs provided
-by the project should be high quality, stable, consistent and generally
-useful.
-
-The oslo-config library is a command line and configuration file
-parsing library from the Oslo project.
 %endif
 
 %prep
@@ -171,75 +126,43 @@ rm oslo_config/tests/test_sphinxconfiggen.py
 %endif
 
 %build
-%if 0%{?with_python3}
-%py3_build
-%endif
-%py2_build
+%{pyver_build}
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -b html doc/source doc/build/html
-# remove the sphinx-build leftovers
+sphinx-build-%{pyver} -b html doc/source doc/build/html
+# remove the sphinx-build-%{pyver} leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%if 0%{?with_python3}
-%py3_install
+%{pyver_install}
 pushd %{buildroot}/%{_bindir}
 for i in generator validator
 do
-mv oslo-config-$i oslo-config-$i-%{python3_version}
-ln -s oslo-config-$i-%{python3_version} oslo-config-$i-3
-done
-# Let's keep backwards compatibility for some time
-ln -s oslo-config-generator-%{python3_version} python3-oslo-config-generator
-
-popd
-%endif
-%py2_install
-pushd %{buildroot}/%{_bindir}
-for i in generator validator
-do
-mv oslo-config-$i oslo-config-$i-%{python2_version}
-ln -s oslo-config-$i-%{python2_version} oslo-config-$i-2
-ln -s oslo-config-$i-%{python2_version} oslo-config-$i
+ln -s oslo-config-$i oslo-config-$i-%{pyver}
 done
 popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
-PYTHON=python2 stestr run
-%if 0%{?with_python3}
-PYTHON=python3 stestr-3 run
-%endif
+PYTHON=%{pyver_bin} stestr-%{pyver} run
 %endif
 
-%files -n python2-%{pypi_name}
+%files -n python%{pyver}-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{_bindir}/oslo-config-generator
-%{_bindir}/oslo-config-generator-2*
+%{_bindir}/oslo-config-generator-%{pyver}
 %{_bindir}/oslo-config-validator
-%{_bindir}/oslo-config-validator-2*
-%{python2_sitelib}/oslo_config
-%{python2_sitelib}/*.egg-info
+%{_bindir}/oslo-config-validator-%{pyver}
+%{pyver_sitelib}/oslo_config
+%{pyver_sitelib}/*.egg-info
 
 %if 0%{?with_doc}
-%files -n python2-%{pypi_name}-doc
+%files -n python%{pyver}-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
-%endif
-
-%if 0%{?with_python3}
-%files -n python3-%{pypi_name}
-%doc README.rst
-%license LICENSE
-%{_bindir}/oslo-config-generator-3*
-%{_bindir}/python3-oslo-config-generator
-%{_bindir}/oslo-config-validator-3*
-%{python3_sitelib}/oslo_config
-%{python3_sitelib}/*.egg-info
 %endif
 
 %changelog
