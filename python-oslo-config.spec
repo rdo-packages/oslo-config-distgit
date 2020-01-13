@@ -19,8 +19,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    6.11.1
-Release:    2%{?dist}
+Version:    6.11.2
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -166,6 +166,9 @@ PYTHON=%{pyver_bin} stestr-%{pyver} run
 %endif
 
 %changelog
+* Mon Jan 13 2020 RDO <dev@lists.rdoproject.org> 2:6.11.2-1
+- Update to 6.11.2
+
 * Thu Oct 03 2019 Joel Capitao <jcapitao@redhat.com> 2:6.11.1-2
 - Removed python2 subpackages in no el7 distros
 
