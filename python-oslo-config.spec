@@ -164,3 +164,4 @@ PYTHON=%{pyver_bin} stestr-%{pyver} run
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.config/commit/?id=4a371e5d1d14ac71bcf4e7911d02b2920469c80f
