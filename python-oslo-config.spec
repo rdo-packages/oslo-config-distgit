@@ -50,7 +50,6 @@ Requires:   python%{pyver}-oslo-i18n >= 3.15.3
 Requires:   python%{pyver}-rfc3986 >= 1.2.0
 Requires:   python%{pyver}-pbr
 Requires:   python%{pyver}-requests >= 2.18.0
-Requires:   python%{pyver}-six >= 1.10.0
 Requires:   python%{pyver}-stevedore >= 1.20.0
 Requires:   python%{pyver}-debtcollector >= 1.2.0
 Requires:   python%{pyver}-netaddr >= 0.7.18
