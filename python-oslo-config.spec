@@ -79,6 +79,7 @@ BuildRequires: python3-sphinx
 BuildRequires: python3-fixtures
 BuildRequires: python3-openstackdocstheme
 BuildRequires: python3-oslotest >= 1.10.0
+BuildRequires: python3-debtcollector
 BuildRequires: python3-stevedore
 BuildRequires: python3-sphinxcontrib-apidoc
 
