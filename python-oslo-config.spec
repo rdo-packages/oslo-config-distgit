@@ -1,13 +1,14 @@
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
+%global repo_bootstrap 1
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    8.0.2
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -141,3 +142,6 @@ PYTHON=python3 stestr-3 run
 %endif
 
 %changelog
+* Thu Apr 23 2020 RDO <dev@lists.rdoproject.org> 2:8.0.2-1
+- Update to 8.0.2
+
