@@ -185,6 +185,10 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
    %{buildroot}%{_bindir}/python3-oslo-config-generator
 %endif
 %py2_install
+pushd %{buildroot}/%{_bindir}
+mv oslo-config-generator oslo-config-generator-2
+ln -s oslo-config-generator-2 oslo-config-generator
+popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
@@ -199,6 +203,7 @@ rm -rf .testrepository
 %doc README.rst
 %license LICENSE
 %{_bindir}/oslo-config-generator
+%{_bindir}/oslo-config-generator-2
 %{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 
