@@ -146,6 +146,11 @@ mv %{buildroot}%{_bindir}/oslo-config-generator \
 %endif
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
+pushd %{buildroot}/%{_bindir}
+mv oslo-config-generator oslo-config-generator-2
+ln -s oslo-config-generator-2 oslo-config-generator
+popd
+
 %{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
@@ -163,6 +168,7 @@ rm -rf .testrepository
 %doc README.rst
 %license LICENSE
 %{_bindir}/oslo-config-generator
+%{_bindir}/oslo-config-generator-2
 %{python2_sitelib}/oslo_config
 %{python2_sitelib}/*.egg-info
 
