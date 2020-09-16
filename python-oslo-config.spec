@@ -144,3 +144,4 @@ PYTHON=python3 stestr-3 run --black-regex test_generator_raises_error
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.config/commit/?id=fcb88941e39a31e3ef6c5a930063da419431a7f6
