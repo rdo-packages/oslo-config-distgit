@@ -1,3 +1,5 @@
+%{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
+%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
@@ -14,10 +16,21 @@ Group:      Development/Languages
 License:    ASL 2.0
 URL:        https://launchpad.net/%{sname}
 Source0:    https://tarballs.openstack.org/%{sname}/%{sname}-%{upstream_version}.tar.gz
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+Source101:        https://tarballs.openstack.org/%{sname}/%{sname}-%{upstream_version}.tar.gz.asc
+Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
+%endif
 
 Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
 
 BuildArch:  noarch
+
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+BuildRequires:  /usr/bin/gpgv2
+BuildRequires:  openstack-macros
+%endif
 
 %description
 The Oslo project intends to produce a python library containing
@@ -90,6 +103,10 @@ Documentation for the oslo-config library.
 %endif
 
 %prep
+# Required for tarball sources verification
+%if 0%{?sources_gpg} == 1
+%{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
+%endif
 %autosetup -n %{sname}-%{upstream_version} -S git
 # Remove shebang from non executable file, it's used by the oslo-config-validator binary.
 sed -i '/\/usr\/bin\/env/d' oslo_config/validator.py
