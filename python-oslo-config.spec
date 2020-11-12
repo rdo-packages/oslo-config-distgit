@@ -61,7 +61,7 @@ BuildRequires: python3-setuptools
 BuildRequires: python3-oslo-i18n
 BuildRequires: python3-rfc3986
 BuildRequires: python3-pbr
-BuildRequires: git
+BuildRequires: git-core
 # Required for tests
 BuildRequires: python3-importlib-metadata
 BuildRequires: python3-testscenarios
