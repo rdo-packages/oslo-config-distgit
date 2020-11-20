@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x5d2d1e4fb8d38e6af76c50d53d4fec30cf5ce3da
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
@@ -9,8 +9,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    8.3.2
-Release:    2%{?dist}
+Version:    8.3.3
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -162,6 +162,9 @@ PYTHON=python3 stestr-3 run --black-regex test_generator_raises_error
 %endif
 
 %changelog
+* Fri Nov 20 2020 RDO <dev@lists.rdoproject.org> 2:8.3.3-1
+- Update to 8.3.3
+
 * Wed Oct 21 2020 Joel Capitao <jcapitao@redhat.com> 2:8.3.2-2
 - Enable sources tarball validation using GPG signature.
 
