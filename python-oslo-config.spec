@@ -19,7 +19,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    6.11.2
+Version:    6.11.3
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -166,6 +166,9 @@ PYTHON=%{pyver_bin} stestr-%{pyver} run
 %endif
 
 %changelog
+* Mon Nov 23 2020 RDO <dev@lists.rdoproject.org> 2:6.11.3-1
+- Update to 6.11.3
+
 * Mon Jan 13 2020 RDO <dev@lists.rdoproject.org> 2:6.11.2-1
 - Update to 6.11.2
 
