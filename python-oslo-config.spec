@@ -54,7 +54,7 @@ Requires:   python3-requests >= 2.18.0
 Requires:   python3-stevedore >= 1.20.0
 Requires:   python3-debtcollector >= 1.2.0
 Requires:   python3-netaddr >= 0.7.18
-Requires:   python3-PyYAML >= 3.10
+Requires:   python3-yaml >= 5.1
 
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
