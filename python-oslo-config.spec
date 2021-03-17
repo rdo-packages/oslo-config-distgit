@@ -46,7 +46,9 @@ Summary:    OpenStack common configuration library
 %{?python_provide:%python_provide python3-%{pypi_name}}
 Obsoletes: python2-%{pypi_name} < %{version}-%{release}
 
+%if (0%{?fedora} && 0%{?fedora} < 32) || (0%{?rhel} && 0%{?rhel} < 9)
 Requires:   python3-importlib-metadata >= 1.7.0
+%endif
 Requires:   python3-oslo-i18n >= 3.15.3
 Requires:   python3-rfc3986 >= 1.2.0
 Requires:   python3-pbr
@@ -63,7 +65,9 @@ BuildRequires: python3-rfc3986
 BuildRequires: python3-pbr
 BuildRequires: git-core
 # Required for tests
+%if (0%{?fedora} && 0%{?fedora} < 32) || (0%{?rhel} && 0%{?rhel} < 9)
 BuildRequires: python3-importlib-metadata
+%endif
 BuildRequires: python3-testscenarios
 BuildRequires: python3-stestr
 BuildRequires: python3-testtools
