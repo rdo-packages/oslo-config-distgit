@@ -22,8 +22,6 @@ Source101:        https://tarballs.openstack.org/%{sname}/%{sname}-%{upstream_ve
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
 
-Patch0001: 0001-add-usr-share-project-dist.conf-to-the-default-confi.patch
-
 BuildArch:  noarch
 
 # Required for tarball sources verification
