@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x5d2d1e4fb8d38e6af76c50d53d4fec30cf5ce3da
+%global sources_gpg_sign 0x4c29ff0e437f3351fd82bdf47c5a3bc787dc7035
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
@@ -9,7 +9,7 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    8.3.3
+Version:    8.3.4
 Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
@@ -162,6 +162,9 @@ PYTHON=python3 stestr-3 run --black-regex test_generator_raises_error
 %endif
 
 %changelog
+* Tue Sep 07 2021 RDO <dev@lists.rdoproject.org> 2:8.3.4-1
+- Update to 8.3.4
+
 * Fri Nov 20 2020 RDO <dev@lists.rdoproject.org> 2:8.3.3-1
 - Update to 8.3.3
 
