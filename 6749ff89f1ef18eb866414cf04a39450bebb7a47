@@ -51,6 +51,24 @@
       "parentUuid": "ffcfd151_dbfd10bd",
       "revId": "6749ff89f1ef18eb866414cf04a39450bebb7a47",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1807a6f_cfb643fe",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-09-09T14:48:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b686ade_f26ff972",
+      "revId": "6749ff89f1ef18eb866414cf04a39450bebb7a47",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
