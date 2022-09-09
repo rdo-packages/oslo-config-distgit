@@ -33,6 +33,24 @@
       "message": "we need to %global repo_bootstrap 1",
       "revId": "6749ff89f1ef18eb866414cf04a39450bebb7a47",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b686ade_f26ff972",
+        "filename": "python-oslo-config.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2022-09-09T14:14:52Z",
+      "side": 1,
+      "message": "in order to break the circular dependency with oslo-log",
+      "parentUuid": "ffcfd151_dbfd10bd",
+      "revId": "6749ff89f1ef18eb866414cf04a39450bebb7a47",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
