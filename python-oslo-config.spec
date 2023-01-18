@@ -57,27 +57,9 @@ Requires:   python3-netaddr >= 0.7.18
 Requires:   python3-yaml >= 5.1
 
 BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-oslo-i18n
-BuildRequires: python3-rfc3986
-BuildRequires: python3-pbr
+BuildRequires: pyproject-rpm-macros
 BuildRequires: git-core
-# Required for tests
-%if (0%{?fedora} && 0%{?fedora} < 32) || (0%{?rhel} && 0%{?rhel} < 9)
-BuildRequires: python3-importlib-metadata
-%endif
-BuildRequires: python3-testscenarios
-BuildRequires: python3-stestr
-BuildRequires: python3-testtools
-BuildRequires: python3-oslotest
-BuildRequires: python3-requests-mock
-BuildRequires: python3-netaddr
-BuildRequires: python3-stevedore
-BuildRequires: python3-PyYAML
 
-%if 0%{?repo_bootstrap} == 0
-BuildRequires: python3-oslo-log
-%endif
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -92,14 +74,6 @@ parsing library from the Oslo project.
 %package -n python-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 
-BuildRequires: python3-sphinx
-BuildRequires: python3-fixtures
-BuildRequires: python3-openstackdocstheme
-BuildRequires: python3-oslotest >= 1.10.0
-BuildRequires: python3-debtcollector
-BuildRequires: python3-stevedore
-BuildRequires: python3-sphinxcontrib-apidoc
-
 %description -n python-%{pypi_name}-doc
 Documentation for the oslo-config library.
 %endif
@@ -109,11 +83,23 @@ Documentation for the oslo-config library.
 %if 0%{?sources_gpg} == 1
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
+
 %autosetup -n %{sname}-%{upstream_version} -S git
+
 # Remove shebang from non executable file, it's used by the oslo-config-validator binary.
 sed -i '/\/usr\/bin\/env/d' oslo_config/validator.py
-# let RPM handle deps
-rm -rf {test-,}requirements.txt
+
+# Remove constraints file in tox deps as pyproject-rpm-macros doesn't support it
+sed -i '/.*-c{env:TOX_CONSTRAINTS_FILE.*/d' tox.ini
+
+sed -i '/^doc8.*/d' doc/requirements.txt
+sed -i '/^pre-commit.*/d' test-requirements.txt
+sed -i '/^bandit.*/d' test-requirements.txt
+sed -i '/^hacking.*/d' test-requirements.txt
+
+%if 0%{?repo_bootstrap} == 1
+sed -i '/^oslo.log*/d' test-requirements.txt
+%endif
 
 # Remove tests requiring sphinx if sphinx is not available
 %if 0%{?with_doc} == 0
@@ -121,18 +107,22 @@ rm oslo_config/tests/test_sphinxext.py
 rm oslo_config/tests/test_sphinxconfiggen.py
 %endif
 
+%generate_buildrequires
+%pyproject_buildrequires -R -t -e %{default_toxenv},docs
+
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
-export PYTHONPATH=.
-sphinx-build-3 -b html doc/source doc/build/html
+%tox -e docs
 # remove the sphinx-build-3 leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%pyproject_install
+%pyproject_save_files oslo_config
+
 pushd %{buildroot}/%{_bindir}
 for i in generator validator
 do
@@ -142,19 +132,16 @@ popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
-# Skip test_generator_raises_error until https://review.opendev.org/#/c/742589/ is in tag release
-PYTHON=python3 stestr-3 run --black-regex test_generator_raises_error
+%tox -e %{default_toxenv} -- -- --black-regex test_generator_raises_error
 %endif
 
-%files -n python3-%{pypi_name}
+%files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.rst
-%license LICENSE
 %{_bindir}/oslo-config-generator
 %{_bindir}/oslo-config-generator-3
 %{_bindir}/oslo-config-validator
 %{_bindir}/oslo-config-validator-3
-%{python3_sitelib}/oslo_config
-%{python3_sitelib}/*.egg-info
+
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
