@@ -143,7 +143,7 @@ popd
 %check
 %if 0%{?repo_bootstrap} == 0
 # Skip test_generator_raises_error until https://review.opendev.org/#/c/742589/ is in tag release
-PYTHON=python3 stestr-3 run --black-regex test_generator_raises_error
+PYTHON=python3 stestr-3 run --exclude-regex test_generator_raises_error
 %endif
 
 %files -n python3-%{pypi_name}
