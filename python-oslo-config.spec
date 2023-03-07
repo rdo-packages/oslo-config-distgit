@@ -8,8 +8,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    9.1.1
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -162,3 +162,6 @@ PYTHON=python3 stestr-3 run
 %endif
 
 %changelog
+* Tue Mar 07 2023 RDO <dev@lists.rdoproject.org> 2:9.1.1-1
+- Update to 9.1.1
+
