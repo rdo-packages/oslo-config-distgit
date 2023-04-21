@@ -30,6 +30,10 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  openstack-macros
 %endif
 
+BuildRequires: python3-devel
+BuildRequires: pyproject-rpm-macros
+BuildRequires: git-core
+
 %description
 The Oslo project intends to produce a python library containing
 infrastructure code shared by OpenStack projects. The APIs provided
@@ -41,43 +45,6 @@ parsing library from the Oslo project.
 
 %package -n python3-%{pypi_name}
 Summary:    OpenStack common configuration library
-%{?python_provide:%python_provide python3-%{pypi_name}}
-Obsoletes: python2-%{pypi_name} < %{version}-%{release}
-
-%if (0%{?fedora} && 0%{?fedora} < 32) || (0%{?rhel} && 0%{?rhel} < 9)
-Requires:   python3-importlib-metadata >= 1.7.0
-%endif
-Requires:   python3-oslo-i18n >= 3.15.3
-Requires:   python3-rfc3986 >= 1.2.0
-Requires:   python3-pbr
-Requires:   python3-requests >= 2.18.0
-Requires:   python3-stevedore >= 1.20.0
-Requires:   python3-debtcollector >= 1.2.0
-Requires:   python3-netaddr >= 0.7.18
-Requires:   python3-yaml >= 5.1
-
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-oslo-i18n
-BuildRequires: python3-rfc3986
-BuildRequires: python3-pbr
-BuildRequires: git-core
-# Required for tests
-%if (0%{?fedora} && 0%{?fedora} < 32) || (0%{?rhel} && 0%{?rhel} < 9)
-BuildRequires: python3-importlib-metadata
-%endif
-BuildRequires: python3-testscenarios
-BuildRequires: python3-stestr
-BuildRequires: python3-testtools
-BuildRequires: python3-oslotest
-BuildRequires: python3-requests-mock
-BuildRequires: python3-netaddr
-BuildRequires: python3-stevedore
-BuildRequires: python3-PyYAML
-
-%if 0%{?repo_bootstrap} == 0
-BuildRequires: python3-oslo-log
-%endif
 
 %description -n python3-%{pypi_name}
 The Oslo project intends to produce a python library containing
@@ -92,14 +59,6 @@ parsing library from the Oslo project.
 %package -n python-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 
-BuildRequires: python3-sphinx
-BuildRequires: python3-fixtures
-BuildRequires: python3-openstackdocstheme
-BuildRequires: python3-oslotest >= 1.10.0
-BuildRequires: python3-debtcollector
-BuildRequires: python3-stevedore
-BuildRequires: python3-sphinxcontrib-apidoc
-
 %description -n python-%{pypi_name}-doc
 Documentation for the oslo-config library.
 %endif
@@ -110,29 +69,45 @@ Documentation for the oslo-config library.
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{sname}-%{upstream_version} -S git
+
+# remove constraint files from tox.ini which is not handled by automatic BRs
+sed -i '/^ *-c.*TOX_CONSTRAINTS_FILE/d' tox.ini
+# remove some unneeded build requirements
+sed -i '/^doc8.*/d' doc/requirements.txt
+sed -i -e '/^mypy.*/d' -e '/^coverage.*/d' -e '/^bandit.*/d' -e '/^hacking.*/d' -e '/^pre-commit.*/d' test-requirements.txt
+
+# There is cyclic dep between oslo.log and oslo.config to run unit tests.
+%if 0%{?repo_bootstrap} != 0
+sed -i -e '/^oslo.log.*/d' test-requirements.txt
+%endif
+
 # Remove shebang from non executable file, it's used by the oslo-config-validator binary.
 sed -i '/\/usr\/bin\/env/d' oslo_config/validator.py
-# let RPM handle deps
-rm -rf {test-,}requirements.txt
-
 # Remove tests requiring sphinx if sphinx is not available
 %if 0%{?with_doc} == 0
 rm oslo_config/tests/test_sphinxext.py
 rm oslo_config/tests/test_sphinxconfiggen.py
 %endif
 
+%generate_buildrequires
+%if 0%{?with_doc}
+%pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+%pyproject_buildrequires -t -e %{default_toxenv}
+%endif
+
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
-export PYTHONPATH=.
-sphinx-build-3 -b html doc/source doc/build/html
+%tox -e docs
 # remove the sphinx-build-3 leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%pyproject_install
+
 pushd %{buildroot}/%{_bindir}
 for i in generator validator
 do
@@ -142,7 +117,7 @@ popd
 
 %check
 %if 0%{?repo_bootstrap} == 0
-PYTHON=python3 stestr-3 run
+%tox -e %{default_toxenv}
 %endif
 
 %files -n python3-%{pypi_name}
@@ -153,7 +128,7 @@ PYTHON=python3 stestr-3 run
 %{_bindir}/oslo-config-validator
 %{_bindir}/oslo-config-validator-3
 %{python3_sitelib}/oslo_config
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 
 %if 0%{?with_doc}
 %files -n python-%{pypi_name}-doc
