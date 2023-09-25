@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x815AFEC729392386480E076DCC0DFE2D21C023C9
 %global sname oslo.config
 %global pypi_name oslo-config
 %global with_doc 1
@@ -17,8 +17,8 @@
 
 Name:       python-oslo-config
 Epoch:      2
-Version:    XXX
-Release:    XXX
+Version:    9.2.0
+Release:    1%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -150,3 +150,6 @@ popd
 %endif
 
 %changelog
+* Mon Sep 25 2023 RDO <dev@lists.rdoproject.org> 2:9.2.0-1
+- Update to 9.2.0
+
