@@ -2,17 +2,20 @@
 %global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
 %global sname oslo.config
 %global pypi_name oslo-config
-%global with_doc 1
+# doc and tests are enabled by default unless %%repo_bootstrap
+%bcond doc %[!0%{?repo_bootstrap}]
+%bcond tests %[!0%{?repo_bootstrap}]
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some BRs from automatic generator
 %global excluded_brs doc8 bandit pre-commit hacking flake8-import-order
+%if %{without doc}
 # Exclude sphinx from BRs if docs are disabled
-%if ! 0%{?with_doc}
 %global excluded_brs %{excluded_brs} sphinx openstackdocstheme
-%endif
-%if 0%{?repo_bootsrap}
+%if %{without tests}
+# Exclude oslo.log from BRs if docs and tests are disabled
 %global excluded_brs %{excluded_brs} oslo.log
+%endif
 %endif
 
 Name:       python-oslo-config
@@ -65,7 +68,7 @@ useful.
 The oslo-config library is a command line and configuration file
 parsing library from the Oslo project.
 
-%if 0%{?with_doc}
+%if %{with doc}
 %package -n python-%{pypi_name}-doc
 Summary:    Documentation for OpenStack common configuration library
 
@@ -83,7 +86,7 @@ Documentation for the oslo-config library.
 sed -i '/\/usr\/bin\/env/d' oslo_config/validator.py
 
 # Remove tests requiring sphinx if sphinx is not available
-%if 0%{?with_doc} == 0
+%if %{with doc} == 0
 rm oslo_config/tests/test_sphinxext.py
 rm oslo_config/tests/test_sphinxconfiggen.py
 %endif
@@ -104,16 +107,12 @@ done
 
 # Automatic BR generation
 %generate_buildrequires
-%if 0%{?with_doc}
-  %pyproject_buildrequires -t -e %{default_toxenv},docs
-%else
-  %pyproject_buildrequires -t -e %{default_toxenv}
-%endif
+%pyproject_buildrequires %{?with_doc:-e docs} %{?with_tests:-e %{default_toxenv}}
 
 %build
 %pyproject_wheel
 
-%if 0%{?with_doc}
+%if %{with doc}
 %tox -e docs
 # remove the sphinx-build-3 leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
@@ -129,7 +128,7 @@ done
 popd
 
 %check
-%if 0%{?repo_bootstrap} == 0
+%if %{with tests}
 %tox -e %{default_toxenv}
 %endif
 
@@ -143,7 +142,7 @@ popd
 %{python3_sitelib}/oslo_config
 %{python3_sitelib}/*.dist-info
 
-%if 0%{?with_doc}
+%if %{with doc}
 %files -n python-%{pypi_name}-doc
 %doc doc/build/html
 %license LICENSE
