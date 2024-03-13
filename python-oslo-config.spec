@@ -3,7 +3,7 @@
 %global sname oslo.config
 %global pypi_name oslo-config
 # doc and tests are enabled by default unless %%repo_bootstrap
-%bcond doc %[!0%{?repo_bootstrap}]
+%bcond doc 0
 %bcond tests %[!0%{?repo_bootstrap}]
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
