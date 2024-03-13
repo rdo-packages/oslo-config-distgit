@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5b4bfd_990925cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2024-03-13T10:14:52Z",
+      "side": 1,
+      "message": "I think this is not working as expected, see https://review.rdoproject.org/r/c/openstack/oslo-config-distgit/+/52094",
+      "revId": "9dce7f816d8f1aa7c194dc81d193cee162c2743c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
