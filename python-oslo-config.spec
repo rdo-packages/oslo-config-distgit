@@ -21,7 +21,7 @@
 Name:       python-oslo-config
 Epoch:      2
 Version:    9.4.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    OpenStack common configuration library
 
 Group:      Development/Languages
@@ -149,6 +149,9 @@ popd
 %endif
 
 %changelog
+* Thu May 16 2024 Alfredo Moralejo <amoralej@redhat.com> 2:9.4.0-2
+- Make it possible to bootstrap this package, use %bconds
+
 * Thu Mar 14 2024 RDO <dev@lists.rdoproject.org> 2:9.4.0-1
 - Update to 9.4.0
 
