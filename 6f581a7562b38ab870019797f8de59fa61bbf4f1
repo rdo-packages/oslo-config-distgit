@@ -1,0 +1,8 @@
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Mon, 28 Oct 2024 11:59:34 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/oslo-config-distgit/+/55135
+Project: openstack/oslo-config-distgit
+Branch: refs/heads/dalmatian-rdo
