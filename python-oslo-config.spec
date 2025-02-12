@@ -1,4 +1,4 @@
-%global repo_bootstrap 0
+%global repo_bootstrap 1
 
 %if 0%{?repo_bootstrap}
 %global excluded_reqs oslo.i18n
