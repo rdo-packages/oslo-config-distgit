@@ -1,0 +1,10 @@
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Workflow+1: Karolina Kula <kkula@redhat.com>
+Code-Review+2: Karolina Kula <kkula@redhat.com>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Thu, 13 Feb 2025 11:49:29 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/oslo-config-distgit/+/56401
+Project: openstack/oslo-config-distgit
+Branch: refs/heads/rpm-master
