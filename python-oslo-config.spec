@@ -161,3 +161,4 @@ popd
 %endif
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/oslo.config/commit/b18ff43e63916849adbd6a46f42744f4491b873e
